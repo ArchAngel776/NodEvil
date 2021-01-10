@@ -1,0 +1,1 @@
+{"version":3,"file":"RouterElementNotFound.d.ts","sourceRoot":"","sources":["../../../../Src/App/Router/Exception/RouterElementNotFound.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,gCAAgC,CAAC;AAE5D,MAAM,CAAC,OAAO,OAAO,qBAAsB,SAAQ,KAAK;gBAEjC,IAAI,EAAG,MAAM,EAAE,MAAM,EAAG,UAAU;CAUxD"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"ServerValidation.d.ts","sourceRoot":"","sources":["../../../../Src/App/Server/Validation/ServerValidation.ts"],"names":[],"mappings":"AAAA,OAAO,YAAY,MAAM,uCAAuC,CAAC;AAEjE,MAAM,CAAC,OAAO,CAAC,QAAQ,OAAO,gBAAgB;IAE1C,SAAS,CAAC,MAAM,EAAG,YAAY,CAAC;gBAEb,MAAM,EAAG,YAAY;aAMxB,QAAQ,IAAK,IAAI,GAAG,KAAK;CAE5C"}

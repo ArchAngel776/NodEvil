@@ -1,0 +1,1 @@
+{"version":3,"file":"DatabaseWhere.d.ts","sourceRoot":"","sources":["../../../Src/Data/Structures/DatabaseWhere.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,qBAAqB,EAAE,MAAM,gCAAgC,CAAC;AACvE,OAAO,iBAAiB,MAAM,qBAAqB,CAAC;AAEpD,MAAM,CAAC,OAAO,WAAW,aAAc,SAAQ,KAAK,CAAC,iBAAiB,GAAG,qBAAqB,CAAC;IAC3F,CAAE,KAAK,EAAG,MAAM,GAAK,iBAAiB,GAAG,qBAAqB,CAAC;CAClE"}

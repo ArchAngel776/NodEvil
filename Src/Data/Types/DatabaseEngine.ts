@@ -1,0 +1,1 @@
+export type DatabaseEngine = "mysql" | "postgre" | "sqlite" | "mongo";

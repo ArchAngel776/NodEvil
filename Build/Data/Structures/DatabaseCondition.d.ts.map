@@ -1,0 +1,1 @@
+{"version":3,"file":"DatabaseCondition.d.ts","sourceRoot":"","sources":["../../../Src/Data/Structures/DatabaseCondition.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,yBAAyB,EAAE,MAAM,oCAAoC,CAAC;AAE/E,MAAM,CAAC,OAAO,WAAW,iBAAiB;IACtC,GAAG,EAAG,MAAM,CAAC;IACb,QAAQ,EAAG,yBAAyB,CAAC;IACrC,KAAK,EAAG,MAAM,GAAG,MAAM,GAAG,IAAI,CAAC;CAClC"}

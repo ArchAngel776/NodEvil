@@ -1,0 +1,1 @@
+{"version":3,"file":"PushResponse.d.ts","sourceRoot":"","sources":["../../../Src/Data/Structures/PushResponse.ts"],"names":[],"mappings":";AAAA,OAAO,mBAAmB,MAAM,uBAAuB,CAAC;AAExD,MAAM,CAAC,OAAO,WAAW,YAAY;IACjC,MAAM,EAAG,MAAM,CAAC;IAChB,IAAI,EAAG,MAAM,CAAC;IACd,OAAO,EAAG,mBAAmB,CAAC;IAC9B,OAAO,CAAC,EAAG,MAAM,GAAG,MAAM,CAAC;CAC9B"}

@@ -1,0 +1,2 @@
+export declare type MimeType = "text/html" | "text/xml" | "text/css" | "text/plain" | "application/javascript" | "application/json" | "iamge/png" | "image/jpeg" | "image/gif" | "image/x-icon" | "video/mp4" | "audio/mpeg";
+//# sourceMappingURL=MimeType.d.ts.map

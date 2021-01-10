@@ -1,0 +1,1 @@
+{"version":3,"file":"ControllerAction.d.ts","sourceRoot":"","sources":["../../../Src/Data/Interfaces/ControllerAction.ts"],"names":[],"mappings":"AAAA,OAAO,eAAe,MAAM,+BAA+B,CAAC;AAC5D,OAAO,YAAY,MAAM,4BAA4B,CAAC;AAEtD,MAAM,CAAC,OAAO,WAAW,gBAAgB;IACrC,CAAC,MAAM,EAAG,eAAe,GAAI,OAAO,CAAC,YAAY,CAAC,CAAC;CACtD"}

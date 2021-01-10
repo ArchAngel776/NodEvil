@@ -1,0 +1,32 @@
+{
+  "name": "nodevil",
+  "version": "1.0.0",
+  "description": "Javascript / Typescript server-side framework working in MVC architecture pattern.",
+  "main": "./Build/index.js",
+  "types": "./Build/index.d.ts",
+  "scripts": {
+    "build": "tsc && echo Done && tsc -w",
+    "test": "nodemon ./Test/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArchAngel776/NodEvil.git"
+  },
+  "author": "ArchAngel776",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArchAngel776/NodEvil/issues"
+  },
+  "homepage": "https://github.com/ArchAngel776/NodEvil#readme",
+  "devDependencies": {
+    "@types/cookie": "^0.4.0",
+    "@types/node": "^14.14.16",
+    "@types/ws": "^7.4.0",
+    "nodemon": "^2.0.6",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "ws": "^7.4.2"
+  }
+}

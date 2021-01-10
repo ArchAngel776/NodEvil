@@ -1,0 +1,1 @@
+export type DatabaseWhereOperator = "OR" | "AND";

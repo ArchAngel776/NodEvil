@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Foo</h1>
+
+    <script type="text/javascript">
+
+        const ws = new WebSocket("wss://jedziemyjedziemy.pl/home");
+
+        ws.onerror = (err) => console.log(err);
+
+        ws.onmessage = (msg) => console.log(msg);
+
+        ws.onopen = () => ws.send("");
+
+    </script>
+    
+</body>
+</html>
