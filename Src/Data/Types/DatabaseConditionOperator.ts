@@ -1,1 +1,1 @@
-export type DatabaseConditionOperator = "=" | ">" | "<" | ">=" | "<=" | "<>" | "BETWEEN" | "LIKE" | "IN";
+export type DatabaseConditionOperator = "=" | ">" | "<" | ">=" | "<=" | "<>" | "BETWEEN" | "LIKE" | "IN" | "IS" | "IS NOT";

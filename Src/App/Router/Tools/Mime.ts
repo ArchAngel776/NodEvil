@@ -1,3 +1,4 @@
+import { EXTENSION } from "../../../Data/Statics/Extension";
 import { MIME_TYPE } from "../../../Data/Statics/MimeType";
 import { MimeType } from "../../../Data/Types/MimeType";
 
@@ -25,47 +26,47 @@ export default class Mime {
 
         switch (this.getExtension()) {
 
-            case "html":
+            case EXTENSION.HTML:
 
                 return MIME_TYPE.TEXT_HTML;
 
-            case "xml":
+            case EXTENSION.XML:
 
                 return MIME_TYPE.TEXT_XML;
 
-            case "css":
+            case EXTENSION.CSS:
 
                 return MIME_TYPE.TEXT_CSS;
 
-            case "jpg":
+            case EXTENSION.JPG:
 
                 return MIME_TYPE.IMAGE_JPEG;
 
-            case "png":
+            case EXTENSION.PNG:
 
                 return MIME_TYPE.IMAGE_PNG;
 
-            case "gif":
+            case EXTENSION.GIF:
 
                 return MIME_TYPE.IMAGE_GIF;
 
-            case "ico":
+            case EXTENSION.ICO:
 
                 return MIME_TYPE.IMAGE_X_ICON;
 
-            case "mp4":
+            case EXTENSION.MP4:
 
                 return MIME_TYPE.VIDEO_MP4;
 
-            case "mp3":
+            case EXTENSION.MP3:
 
                 return MIME_TYPE.AUDIO_MPEG;
 
-            case "js":
+            case EXTENSION.JS:
 
                 return MIME_TYPE.APPLICATION_JAVASCRIPT;
 
-            case "json":
+            case EXTENSION.JSON:
 
                 return MIME_TYPE.APPLICATION_JSON;
 
