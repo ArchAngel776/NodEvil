@@ -1,5 +1,5 @@
-import RouterElement from "./RouterElement";
+import ElementOfRouter from "../../App/Router/ElementOfRouter";
 
-export default interface RouterStack extends Array<RouterElement> {
-    [ index : number ] : RouterElement;
+export default interface RouterStack extends Array<ElementOfRouter> {
+    [ index : number ] : ElementOfRouter;
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"FilterSchema.d.ts","sourceRoot":"","sources":["../../../Src/Data/Structures/FilterSchema.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,qBAAqB,EAAE,MAAM,gCAAgC,CAAC;AACvE,OAAO,iBAAiB,MAAM,qBAAqB,CAAC;AAEpD,MAAM,CAAC,OAAO,WAAW,YAAY;IACjC,UAAU,EAAG,iBAAiB,EAAE,CAAC;IACjC,SAAS,EAAG,qBAAqB,EAAE,CAAC;CACvC"}

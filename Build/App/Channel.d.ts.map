@@ -1,1 +1,1 @@
-{"version":3,"file":"Channel.d.ts","sourceRoot":"","sources":["../../Src/App/Channel.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,CAAC,QAAQ,OAAO,OAAO;CAIpC"}
+{"version":3,"file":"Channel.d.ts","sourceRoot":"","sources":["../../Src/App/Channel.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,SAAS,MAAM,IAAI,CAAC;AAEhC,MAAM,CAAC,OAAO,CAAC,QAAQ,OAAO,OAAO;IAEjC,SAAS,CAAC,MAAM,EAAG,SAAS,CAAC;gBAEV,MAAM,EAAG,SAAS;CAMxC"}

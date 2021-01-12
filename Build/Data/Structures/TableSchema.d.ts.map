@@ -1,0 +1,1 @@
+{"version":3,"file":"TableSchema.d.ts","sourceRoot":"","sources":["../../../Src/Data/Structures/TableSchema.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,wBAAwB,CAAC;AAEvD,MAAM,CAAC,OAAO,WAAW,WAAW;IAChC,SAAS,EAAG,MAAM,CAAC;IACnB,MAAM,EAAG,MAAM,EAAE,CAAC;IAClB,MAAM,EAAG,aAAa,EAAE,CAAC;CAC5B"}

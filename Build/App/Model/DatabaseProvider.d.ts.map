@@ -1,1 +1,1 @@
-{"version":3,"file":"DatabaseProvider.d.ts","sourceRoot":"","sources":["../../../Src/App/Model/DatabaseProvider.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,CAAC,QAAQ,OAAO,gBAAgB;CAI7C"}
+{"version":3,"file":"DatabaseProvider.d.ts","sourceRoot":"","sources":["../../../Src/App/Model/DatabaseProvider.ts"],"names":[],"mappings":"AAAA,OAAO,kBAAkB,MAAM,0CAA0C,CAAC;AAE1E,MAAM,CAAC,OAAO,CAAC,QAAQ,OAAO,gBAAgB;IAE1C,SAAS,CAAC,kBAAkB,EAAG,kBAAkB,GAAG,IAAI,CAAC;;CAQ5D"}

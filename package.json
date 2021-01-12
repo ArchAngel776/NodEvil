@@ -6,7 +6,7 @@
   "types": "./Build/index.d.ts",
   "scripts": {
     "build": "tsc && echo Done && tsc -w",
-    "test": "nodemon ./Test/server.js"
+    "test": "nodemon ./Tests/server.js"
   },
   "repository": {
     "type": "git",

@@ -1,1 +1,1 @@
-{"version":3,"file":"DatabaseConditionOperator.d.ts","sourceRoot":"","sources":["../../../Src/Data/Types/DatabaseConditionOperator.ts"],"names":[],"mappings":"AAAA,oBAAY,yBAAyB,GAAG,GAAG,GAAG,GAAG,GAAG,GAAG,GAAG,IAAI,GAAG,IAAI,GAAG,IAAI,GAAG,SAAS,GAAG,MAAM,GAAG,IAAI,CAAC"}
+{"version":3,"file":"DatabaseConditionOperator.d.ts","sourceRoot":"","sources":["../../../Src/Data/Types/DatabaseConditionOperator.ts"],"names":[],"mappings":"AAAA,oBAAY,yBAAyB,GAAG,GAAG,GAAG,GAAG,GAAG,GAAG,GAAG,IAAI,GAAG,IAAI,GAAG,IAAI,GAAG,SAAS,GAAG,MAAM,GAAG,IAAI,GAAG,IAAI,GAAG,QAAQ,CAAC"}

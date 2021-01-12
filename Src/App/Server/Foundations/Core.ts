@@ -24,9 +24,11 @@ export default abstract class Core {
 
     protected abstract createUnsecured() : HttpPossibleCore;
 
-    public listen(port : number) : void {
+    public listen(port : number) : HttpPossibleCore {
 
         this.core.listen(port, () => console.log(`Server started at ${port} port.`));
+
+        return this.core;
 
     }
 

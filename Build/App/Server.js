@@ -5,6 +5,7 @@ const ExceptionReader_1 = require("./Exception/ExceptionReader");
 const HttpVersionUnsupported_1 = require("./Server/Exception/HttpVersionUnsupported");
 const Http2Core_1 = require("./Server/Foundations/Http2Core");
 const HttpCore_1 = require("./Server/Foundations/HttpCore");
+const SocketServer_1 = require("./Server/Socket/SocketServer");
 const SslObject_1 = require("./Server/SslObject");
 const ConfigValidator_1 = require("./Server/Validation/ConfigValidator");
 class Server {
@@ -15,7 +16,7 @@ class Server {
     init() {
         try {
             this.validator.validate();
-            this.getCore(this.config.httpVersion).listen(this.config.port);
+            new SocketServer_1.default(this.getCore(this.config.httpVersion).listen(this.config.port)).init();
         }
         catch (errorInstance) {
             const exceptionReader = new ExceptionReader_1.default(errorInstance);

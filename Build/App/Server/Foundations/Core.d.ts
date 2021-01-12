@@ -10,6 +10,6 @@ export default abstract class Core {
     protected abstract requestHandler(request: HttpPossibleRequest, response: HttpPossibleResponse): Promise<void>;
     protected abstract createSecured(ssl: SslStructure): HttpPossibleCore;
     protected abstract createUnsecured(): HttpPossibleCore;
-    listen(port: number): void;
+    listen(port: number): HttpPossibleCore;
 }
 //# sourceMappingURL=Core.d.ts.map

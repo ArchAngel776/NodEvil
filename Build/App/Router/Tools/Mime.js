@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Extension_1 = require("../../../Data/Statics/Extension");
 const MimeType_1 = require("../../../Data/Statics/MimeType");
 class Mime {
     constructor(path) {
@@ -12,27 +13,27 @@ class Mime {
     }
     getMime() {
         switch (this.getExtension()) {
-            case "html":
+            case Extension_1.EXTENSION.HTML:
                 return MimeType_1.MIME_TYPE.TEXT_HTML;
-            case "xml":
+            case Extension_1.EXTENSION.XML:
                 return MimeType_1.MIME_TYPE.TEXT_XML;
-            case "css":
+            case Extension_1.EXTENSION.CSS:
                 return MimeType_1.MIME_TYPE.TEXT_CSS;
-            case "jpg":
+            case Extension_1.EXTENSION.JPG:
                 return MimeType_1.MIME_TYPE.IMAGE_JPEG;
-            case "png":
+            case Extension_1.EXTENSION.PNG:
                 return MimeType_1.MIME_TYPE.IMAGE_PNG;
-            case "gif":
+            case Extension_1.EXTENSION.GIF:
                 return MimeType_1.MIME_TYPE.IMAGE_GIF;
-            case "ico":
+            case Extension_1.EXTENSION.ICO:
                 return MimeType_1.MIME_TYPE.IMAGE_X_ICON;
-            case "mp4":
+            case Extension_1.EXTENSION.MP4:
                 return MimeType_1.MIME_TYPE.VIDEO_MP4;
-            case "mp3":
+            case Extension_1.EXTENSION.MP3:
                 return MimeType_1.MIME_TYPE.AUDIO_MPEG;
-            case "js":
+            case Extension_1.EXTENSION.JS:
                 return MimeType_1.MIME_TYPE.APPLICATION_JAVASCRIPT;
-            case "json":
+            case Extension_1.EXTENSION.JSON:
                 return MimeType_1.MIME_TYPE.APPLICATION_JSON;
             default:
                 return MimeType_1.MIME_TYPE.TEXT_PLAIN;

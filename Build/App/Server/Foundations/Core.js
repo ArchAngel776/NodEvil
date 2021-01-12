@@ -7,6 +7,7 @@ class Core {
     }
     listen(port) {
         this.core.listen(port, () => console.log(`Server started at ${port} port.`));
+        return this.core;
     }
 }
 exports.default = Core;

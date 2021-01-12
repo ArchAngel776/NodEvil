@@ -11,13 +11,19 @@
 
     <script type="text/javascript">
 
-        const ws = new WebSocket("wss://jedziemyjedziemy.pl/home");
+        const ws = new WebSocket("wss://localhost/");
 
-        ws.onerror = (err) => console.log(err);
+        ws.onopen = () => {
 
-        ws.onmessage = (msg) => console.log(msg);
+            ws.onmessage = (msg) => {
 
-        ws.onopen = () => ws.send("");
+                console.log(msg);
+
+            }
+
+            ws.send("foo");
+
+        }
 
     </script>
     

@@ -1,7 +1,8 @@
 import { DatabaseConditionOperator } from "../Types/DatabaseConditionOperator";
+import { DatabaseValue } from "../Types/DatabaseValue";
 export default interface DatabaseCondition {
-    key: string;
+    field: string;
+    value: DatabaseValue;
     operator: DatabaseConditionOperator;
-    value: number | string | null;
 }
 //# sourceMappingURL=DatabaseCondition.d.ts.map
