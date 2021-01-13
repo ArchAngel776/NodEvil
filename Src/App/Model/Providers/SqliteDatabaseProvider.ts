@@ -12,7 +12,7 @@ export default class SqliteDatabaseProvider extends DatabaseProvider {
 
     public read() : any {
 
-        const sqlBuilder = new SelectSqlBuilder(this.queryBuilderSchema as QueryBuilderSchema);
+        
 
     }
 

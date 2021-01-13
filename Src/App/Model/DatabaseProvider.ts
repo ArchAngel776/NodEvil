@@ -75,7 +75,7 @@ export default abstract class DatabaseProvider implements Validation {
 
     public abstract read() : Promise<TableData[] | never>;
 
-    public abstract update() : Promise<TableData[] | never>;
+    public abstract update() : Promise<number | never>;
 
     public abstract delete() : Promise<number | never>;
 

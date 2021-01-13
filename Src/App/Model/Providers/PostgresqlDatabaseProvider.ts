@@ -1,22 +1,23 @@
-import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 import DatabaseProvider from "../DatabaseProvider";
 import SelectSqlBuilder from "../SqlBuilder/SelectSqlBuilder";
-import { Client } from "pg";
+import * as PostgreSql from "pg";
 import DatabaseConfig from "../../../Data/Structures/DatabaseConfig";
 import InsertSqlBuilder from "../SqlBuilder/InsertSqlBuilder";
 import UpdateSqlBuilder from "../SqlBuilder/UpdateSqlBuilder";
 import DeleteSqlBuilder from "../SqlBuilder/DeleteSqlBuilder";
 import TableData from "../../../Data/Structures/TableData";
+import { SqlBuilderInstance } from "../../../Data/Types/SqlBuilderInstance";
+import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 
 export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
-    protected client : Client;
+    protected client : PostgreSql.Client;
 
     public constructor(config : DatabaseConfig) {
 
         super(config);
 
-        this.client = new Client({
+        this.client = new PostgreSql.Client({
             host: this.config.host,
             port: this.config.port,
             user: this.config.username,
@@ -26,15 +27,21 @@ export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
     }
 
-    public async create() : Promise<number | never> {
+    protected async operation(SqlBuilder : SqlBuilderInstance) : Promise<PostgreSql.QueryResult | never> {
 
         await this.client.connect();
 
-        const sqlBuilder = new InsertSqlBuilder(this.queryBuilderSchema as QueryBuilderSchema);
-
-        const result = await this.client.query(sqlBuilder.build());
+        const result = await this.client.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build());
 
         await this.client.end();
+
+        return result;
+
+    }
+
+    public async create() : Promise<number | never> {
+
+        const result = await this.operation(InsertSqlBuilder);
 
         return result.rowCount;
 
@@ -42,43 +49,23 @@ export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
     public async read() : Promise<TableData[] | never> {
 
-        await this.client.connect();
-
-        const sqlBuilder = new SelectSqlBuilder(this.queryBuilderSchema as QueryBuilderSchema);
-
-        console.log(sqlBuilder.build());
-
-        const result = await this.client.query(sqlBuilder.build());
-
-        await this.client.end();
-
+        const result = await this.operation(SelectSqlBuilder);
+        
         return result.rows;
 
     }
 
-    public async update() : Promise<TableData[] | never> {
+    public async update() : Promise<number | never> {
 
-        await this.client.connect();
+        const result = await this.operation(UpdateSqlBuilder);
 
-        const sqlBuilder = new UpdateSqlBuilder(this.queryBuilderSchema as QueryBuilderSchema);
-
-        const result = await this.client.query(sqlBuilder.build());
-
-        await this.client.end();
-
-        return result.rows;
+        return result.rowCount;
 
     }
 
     public async delete() : Promise<number | never> {
 
-        await this.client.connect();
-
-        const sqlBuilder = new DeleteSqlBuilder(this.queryBuilderSchema as QueryBuilderSchema);
-
-        const result = await this.client.query(sqlBuilder.build());
-
-        await this.client.end();
+        const result = await this.operation(DeleteSqlBuilder);
 
         return result.rowCount;
 

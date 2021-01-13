@@ -56,7 +56,7 @@ export default class QueryBuilder {
             main: this.main.getSchema(),
             join: this.join.getSchema(),
             filter: this.filter.getSchema(),
-            operation: this.operation as CrudOperation
+            operation: <CrudOperation> this.operation
         };
 
         return result;

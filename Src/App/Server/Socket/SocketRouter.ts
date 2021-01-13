@@ -2,6 +2,7 @@ import * as WebSocket from "ws";
 import Init from "../../../Data/Interfaces/Init";
 import Router from "../../Router";
 import Request from "../Stream/Request";
+import SocketClient from "./SocketClient";
 
 export default class SocketRouter implements Init {
 
@@ -21,11 +22,9 @@ export default class SocketRouter implements Init {
 
         const channelElement = Router.getInstance().readChannel(this.request.getUrl());
 
-        const Channel = channelElement.channel;
+        const client = new SocketClient(this.socket, channelElement.channel);
 
-        const channel = new Channel(this.socket);
-
-        channel.init();
+        client.init();
 
     }
 

@@ -47,6 +47,4 @@ export default abstract class SqlBuilder {
 
     }
 
-    protected abstract get prefix() : string;
-
 }
