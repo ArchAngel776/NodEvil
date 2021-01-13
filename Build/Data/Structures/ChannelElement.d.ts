@@ -1,8 +1,6 @@
-import Channel from "../../App/Channel";
+import { ChannelInstance } from "../Types/ChannelInstance";
 export default interface ChannelElement {
     path: string;
-    channel: {
-        new (): Channel;
-    };
+    channel: ChannelInstance;
 }
 //# sourceMappingURL=ChannelElement.d.ts.map

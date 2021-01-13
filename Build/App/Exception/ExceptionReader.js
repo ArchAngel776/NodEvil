@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const String_1 = require("../../Data/Statics/String");
 class ExceptionReader {
     constructor(errorInstance) {
         this.errorInstance = errorInstance;
     }
-    writeSection(content, end = "") {
+    writeSection(content, end = String_1.STRING.EMPTY) {
         console.error(`\n${content}${end}`);
     }
     read() {

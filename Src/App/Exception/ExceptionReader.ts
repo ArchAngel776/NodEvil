@@ -1,3 +1,5 @@
+import { STRING } from "../../Data/Statics/String";
+
 export default class ExceptionReader {
 
     protected errorInstance : Error;
@@ -8,7 +10,7 @@ export default class ExceptionReader {
 
     }
 
-    protected writeSection(content : string, end : string = "") : void {
+    protected writeSection(content : string, end : string = STRING.EMPTY) : void {
 
         console.error(`\n${content}${end}`);
 

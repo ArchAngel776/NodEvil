@@ -3,6 +3,7 @@ import { HTTP_VERSION } from "../Data/Statics/HttpVersion";
 import ServerConfig from "../Data/Structures/ServerConfig";
 import { HttpVersion } from "../Data/Types/HttpVersion";
 import ExceptionReader from "./Exception/ExceptionReader";
+import Model from "./Model";
 import HttpVersionUnsupported from "./Server/Exception/HttpVersionUnsupported";
 import Core from "./Server/Foundations/Core";
 import Http2Core from "./Server/Foundations/Http2Core";
@@ -30,6 +31,8 @@ export default class Server implements Init {
         try {
 
             this.validator.validate();
+
+            Model.setConfig(this.config.database);
 
             new SocketServer(this.getCore(this.config.httpVersion).listen(this.config.port)).init();
 

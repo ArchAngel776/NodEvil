@@ -1,22 +1,29 @@
+import { CRUD_OPERATION } from "../Data/Statics/CrudOperation";
+import DatabaseConfig from "../Data/Structures/DatabaseConfig";
 import TableData from "../Data/Structures/TableData";
 import { DatabaseConditionOperator } from "../Data/Types/DatabaseConditionOperator";
 import { DatabaseValue } from "../Data/Types/DatabaseValue";
+import ExceptionReader from "./Exception/ExceptionReader";
 import DatabaseProvider from "./Model/DatabaseProvider";
+import DatabaseProviderUnsupported from "./Model/Exception/DatabaseProviderUnsupported";
+import PostgresqlDatabaseProvider from "./Model/Providers/PostgresqlDatabaseProvider";
 import QueryBuilder from "./Model/QueryBuilder";
 
 export default abstract class Model {
+
+    protected static config : DatabaseConfig;
 
     protected abstract table : string;
 
     protected queryBuilder : QueryBuilder;
 
-    //protected provider : DatabaseProvider;
+    protected provider : DatabaseProvider;
 
     public constructor() {
 
         this.queryBuilder = new QueryBuilder(this.getTable);
 
-        //this.provider = this.createProvider();
+        this.provider = this.createProvider();
 
     }
 
@@ -74,7 +81,105 @@ export default abstract class Model {
 
     }
 
-    public insert(data : TableData) : any {
+    public insert(data : TableData) : any | null {
+
+        this.setFieldsAndValuesFromData(data);
+
+        this.queryBuilder.changeOperation(CRUD_OPERATION.CREATE);
+
+        
+
+        try {
+
+            
+
+        }
+
+        catch (errorInstance) {
+
+            const exceptionReader = new ExceptionReader(errorInstance);
+
+            exceptionReader.read();
+
+            return null;
+
+        }
+
+    }
+
+    public async get() : Promise<any | null> {
+
+        this.queryBuilder.changeOperation(CRUD_OPERATION.READ);
+
+        this.provider.setSchema(this.queryBuilder.getSchema());
+
+        try {
+
+            this.provider.validation();
+
+            return await this.provider.read();
+
+        }
+
+        catch (errorInstance) {
+
+            const exceptionReader = new ExceptionReader(errorInstance);
+
+            exceptionReader.read();
+
+            return null;
+
+        }
+
+    }
+
+    public update(data : TableData) : any | null {
+
+        this.setFieldsAndValuesFromData(data);
+
+        this.queryBuilder.changeOperation(CRUD_OPERATION.UPDATE);
+
+        try {
+
+            
+
+        }
+
+        catch (errorInstance) {
+
+            const exceptionReader = new ExceptionReader(errorInstance);
+
+            exceptionReader.read();
+
+            return null;
+
+        }
+
+    }
+
+    public delete() : any | null {
+
+        this.queryBuilder.changeOperation(CRUD_OPERATION.DELETE);
+
+        try {
+
+            
+
+        }
+
+        catch (errorInstance) {
+
+            const exceptionReader = new ExceptionReader(errorInstance);
+
+            exceptionReader.read();
+
+            return null;
+
+        }
+
+    }
+
+    protected setFieldsAndValuesFromData(data : TableData) : void {
 
         const fields = [], values = [];
 
@@ -86,49 +191,37 @@ export default abstract class Model {
 
         }
 
-        this.queryBuilder.changeOperation("create");
-
         this.queryBuilder.selectMain().setFields(fields);
 
         this.queryBuilder.selectMain().setValues(values);
 
     }
 
-    public get() : any {
+    protected createProvider() : DatabaseProvider | never {
 
-        this.queryBuilder.changeOperation("read");
+        switch (Model.config.engine) {
 
-    }
+            case "postgre":
 
-    public update(data : TableData) : any {
+                return new PostgresqlDatabaseProvider(Model.config);
 
-        const fields = [], values = [];
+            default:
 
-        for (const key in data) {
-
-            fields.push(key);
-
-            values.push(data[key]);
+                throw new DatabaseProviderUnsupported(Model.config.engine);
 
         }
-
-        this.queryBuilder.changeOperation("update");
-
-        this.queryBuilder.selectMain().setFields(fields);
-
-        this.queryBuilder.selectMain().setValues(values);
-
-    }
-
-    public delete() : any {
-
-        this.queryBuilder.changeOperation("delete");
 
     }
 
     protected get getTable() : string {
 
         return this.table;
+
+    }
+
+    public static setConfig(config : DatabaseConfig) : void {
+
+        Model.config = config;
 
     }
 

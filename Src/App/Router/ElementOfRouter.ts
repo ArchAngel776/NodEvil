@@ -1,6 +1,6 @@
 import RouterElement from "../../Data/Structures/RouterElement";
+import { ControllerInstance } from "../../Data/Types/ControllerInstance";
 import { HttpMethod } from "../../Data/Types/HttpMethod";
-import Controller from "../Controller";
 
 export default class ElementOfRouter {
 
@@ -8,11 +8,11 @@ export default class ElementOfRouter {
 
     protected method : HttpMethod;
 
-    protected controller : typeof Controller;
+    protected controller : ControllerInstance;
 
     protected action : string;
 
-    public constructor(path : string, method : HttpMethod, controller : typeof Controller, action : string) {
+    public constructor(path : string, method : HttpMethod, controller : ControllerInstance, action : string) {
 
         this.path = path;
 

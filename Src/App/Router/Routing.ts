@@ -7,8 +7,10 @@ import Mime from "./Tools/Mime";
 import ControllerAction from "../../Data/Interfaces/ControllerAction";
 import Session from "../Controller/Session";
 import ControllerActionNotFound from "./Exception/ControllerActionNotFound";
+import { STRING } from "../../Data/Statics/String";
+import Init from "../../Data/Interfaces/Init";
 
-export default class Routing {
+export default class Routing implements Init {
 
     protected request : Request;
 
@@ -52,21 +54,15 @@ export default class Routing {
 
             const Controller = routerElemet.controller;
 
-            const cookies = this.request.getHeaders().cookie || "";
+            const controllerInstance = new Controller(new Session(this.request.getHeaders().cookie || STRING.EMPTY));
 
-            const session = new Session(cookies);
-
-            const controllerInstance = new Controller(session);
-
-            if (!(routerElemet.action in controllerInstance && typeof controllerInstance[routerElemet.action] === "function")) {
+            if (!(routerElemet.action in controllerInstance && typeof Controller.prototype[routerElemet.action] === "function")) {
 
                 throw new ControllerActionNotFound(Controller.name, routerElemet.action);
 
             }
 
-            const action = controllerInstance[routerElemet.action] as ControllerAction;
-
-            const viewResponse = await action.call(controllerInstance, await this.request.getParams());
+            const viewResponse = await (<ControllerAction>Controller.prototype[routerElemet.action]).call(controllerInstance, await this.request.getParams());
 
             this.response.sendView(viewResponse);
 
@@ -84,11 +80,7 @@ export default class Routing {
 
         if (this.request.getType() === HTTP_METHOD.Get && existsSync(this.request.getUrl()) && lstatSync(this.request.getUrl()).isFile()) {
 
-            const fileContent = readFileSync(this.request.getUrl());
-
-            const mimeType = new Mime(this.request.getUrl()).getMime();
-
-            this.response.sendFile(fileContent, mimeType);
+            this.response.sendFile(readFileSync(this.request.getUrl()), new Mime(this.request.getUrl()).getMime());
 
             return true;
 

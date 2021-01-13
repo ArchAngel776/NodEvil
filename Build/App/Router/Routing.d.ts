@@ -1,6 +1,7 @@
 import Request from "../Server/Stream/Request";
 import Response from "../Server/Stream/Response";
-export default class Routing {
+import Init from "../../Data/Interfaces/Init";
+export default class Routing implements Init {
     protected request: Request;
     protected response: Response;
     constructor(request: Request, response: Response);

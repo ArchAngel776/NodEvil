@@ -1,13 +1,9 @@
 import ChannelElement from "../../Data/Structures/ChannelElement";
-import Channel from "../Channel";
+import { ChannelInstance } from "../../Data/Types/ChannelInstance";
 export default class RouterChannel {
     protected path: string;
-    protected channel: {
-        new (): Channel;
-    };
-    constructor(path: string, channel: {
-        new (): Channel;
-    });
+    protected channel: ChannelInstance;
+    constructor(path: string, channel: ChannelInstance);
     getStructure(): ChannelElement;
 }
 //# sourceMappingURL=RouterChannel.d.ts.map

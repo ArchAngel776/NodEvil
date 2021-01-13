@@ -1,11 +1,23 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const CrudOperation_1 = require("../Data/Statics/CrudOperation");
+const ExceptionReader_1 = require("./Exception/ExceptionReader");
+const DatabaseProviderUnsupported_1 = require("./Model/Exception/DatabaseProviderUnsupported");
+const PostgresqlDatabaseProvider_1 = require("./Model/Providers/PostgresqlDatabaseProvider");
 const QueryBuilder_1 = require("./Model/QueryBuilder");
 class Model {
-    //protected provider : DatabaseProvider;
     constructor() {
         this.queryBuilder = new QueryBuilder_1.default(this.getTable);
-        //this.provider = this.createProvider();
+        this.provider = this.createProvider();
     }
     from(tableName) {
         this.queryBuilder.selectMain().changeTable(tableName);
@@ -35,33 +47,74 @@ class Model {
         return this;
     }
     insert(data) {
-        const fields = [], values = [];
-        for (const key in data) {
-            fields.push(key);
-            values.push(data[key]);
+        this.setFieldsAndValuesFromData(data);
+        this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.CREATE);
+        try {
         }
-        this.queryBuilder.changeOperation("create");
-        this.queryBuilder.selectMain().setFields(fields);
-        this.queryBuilder.selectMain().setValues(values);
+        catch (errorInstance) {
+            const exceptionReader = new ExceptionReader_1.default(errorInstance);
+            exceptionReader.read();
+            return null;
+        }
     }
     get() {
-        this.queryBuilder.changeOperation("read");
+        return __awaiter(this, void 0, void 0, function* () {
+            this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.READ);
+            this.provider.setSchema(this.queryBuilder.getSchema());
+            try {
+                this.provider.validation();
+                return yield this.provider.read();
+            }
+            catch (errorInstance) {
+                const exceptionReader = new ExceptionReader_1.default(errorInstance);
+                exceptionReader.read();
+                return null;
+            }
+        });
     }
     update(data) {
+        this.setFieldsAndValuesFromData(data);
+        this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.UPDATE);
+        try {
+        }
+        catch (errorInstance) {
+            const exceptionReader = new ExceptionReader_1.default(errorInstance);
+            exceptionReader.read();
+            return null;
+        }
+    }
+    delete() {
+        this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.DELETE);
+        try {
+        }
+        catch (errorInstance) {
+            const exceptionReader = new ExceptionReader_1.default(errorInstance);
+            exceptionReader.read();
+            return null;
+        }
+    }
+    setFieldsAndValuesFromData(data) {
         const fields = [], values = [];
         for (const key in data) {
             fields.push(key);
             values.push(data[key]);
         }
-        this.queryBuilder.changeOperation("update");
         this.queryBuilder.selectMain().setFields(fields);
         this.queryBuilder.selectMain().setValues(values);
     }
-    delete() {
-        this.queryBuilder.changeOperation("delete");
+    createProvider() {
+        switch (Model.config.engine) {
+            case "postgre":
+                return new PostgresqlDatabaseProvider_1.default(Model.config);
+            default:
+                throw new DatabaseProviderUnsupported_1.default(Model.config.engine);
+        }
     }
     get getTable() {
         return this.table;
+    }
+    static setConfig(config) {
+        Model.config = config;
     }
 }
 exports.default = Model;

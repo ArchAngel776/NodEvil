@@ -12,6 +12,7 @@ const server = new Server({
         engine: "postgre",
         host: "localhost",
         port: 5432,
+        dbname: "jedziemyjedziemy",
         username: "postgres",
         password: "72assaw123"
     }

@@ -1,9 +1,9 @@
-import Controller from "../../App/Controller";
+import { ControllerInstance } from "../Types/ControllerInstance";
 import { HttpMethod } from "../Types/HttpMethod";
 
 export default interface RouterElement {
     path : string;
     method : HttpMethod;
-    controller : typeof Controller;
+    controller : ControllerInstance;
     action : string;
 }

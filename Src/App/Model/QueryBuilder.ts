@@ -1,5 +1,5 @@
 import QueryBuilderSchema from "../../Data/Structures/QueryBuilderSchema";
-import { QueryBuilderOperation } from "../../Data/Types/QueryBuilderOperation";
+import { CrudOperation } from "../../Data/Types/CrudOperation";
 import Filter from "./QueryBuilder/Filter";
 import Join from "./QueryBuilder/Join";
 import Main from "./QueryBuilder/Main";
@@ -12,7 +12,7 @@ export default class QueryBuilder {
 
     protected filter : Filter;
 
-    protected operation : QueryBuilderOperation | null;
+    protected operation : CrudOperation | null;
 
     public constructor(tableName : string) {
 
@@ -44,25 +44,19 @@ export default class QueryBuilder {
 
     }
 
-    public changeOperation(operation : QueryBuilderOperation) : void {
+    public changeOperation(operation : CrudOperation) : void {
 
         this.operation = operation;
 
     }
 
-    public getSchema() : QueryBuilderSchema | never {
-
-        if (this.operation === null) {
-
-            throw new Error();
-
-        }
+    public getSchema() : QueryBuilderSchema {
 
         const result : QueryBuilderSchema = {
             main: this.main.getSchema(),
             join: this.join.getSchema(),
             filter: this.filter.getSchema(),
-            operation: this.operation
+            operation: this.operation as CrudOperation
         };
 
         return result;

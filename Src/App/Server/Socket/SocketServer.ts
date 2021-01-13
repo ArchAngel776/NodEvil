@@ -3,44 +3,33 @@ import { HttpPossibleCore } from "../../../Data/Types/HttpPossibleCore";
 import * as WebSocket from "ws";
 import { IncomingMessage, Server } from "http";
 import ExceptionReader from "../../Exception/ExceptionReader";
-import Router from "../../Router";
 import Request from "../Stream/Request";
 import { HTTP_VERSION } from "../../../Data/Statics/HttpVersion";
-
+import SocketRouter from "./SocketRouter";
 
 export default class SocketServer implements Init {
 
-    protected core : HttpPossibleCore;
-
-    protected wss : WebSocket.Server | null;
+    protected wss : WebSocket.Server;
 
     public constructor(core : HttpPossibleCore) {
 
-        this.core = core;
-
-        this.wss = null;
+        this.wss = new WebSocket.Server({ server: core as Server });
 
     }
 
     public init() : void {
 
-        this.wss = new WebSocket.Server({ server: this.core as Server });
-
         this.wss.on("connection", this.routing);
 
     }
 
-    protected routing(socket : WebSocket, request : IncomingMessage) : void {
+    protected routing(socket : WebSocket, socketRequest : IncomingMessage) : void {
 
         try {
 
-            const req = new Request(HTTP_VERSION.v1_1, request)
+            const socketRouter = new SocketRouter(socket, new Request(HTTP_VERSION.v1_1, socketRequest));
 
-            const channelElement = Router.getInstance().readChannel(req.getUrl());
-
-            const Channel = channelElement.channel;
-
-            const channel = new Channel(socket);
+            socketRouter.init();
 
         }
 

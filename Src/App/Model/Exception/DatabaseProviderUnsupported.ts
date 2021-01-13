@@ -1,10 +1,23 @@
-export default class DatabaseProviderUnsupported extends Error {
+import { DatabaseEngine } from "../../../Data/Types/DatabaseEngine";
+import ErrorInstance from "../../Exception/ErrorInstance";
 
-    public constructor() {
+export default class DatabaseProviderUnsupported extends ErrorInstance {
 
-        super();
+    public constructor(engine : DatabaseEngine) {
 
-        this.name = "Database Provider Unsupported Exception";
+        super(engine);
+
+    }
+
+    protected getTitle() : string {
+
+        return "Database Provider Unsupported Exception";
+
+    }
+
+    protected getMessage(engine : DatabaseEngine) : string {
+
+        return `Database engine "${engine}" is unsupported Database Provider.`;
 
     }
 

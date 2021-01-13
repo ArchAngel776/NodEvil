@@ -1,3 +1,4 @@
+import { STRING } from "../../../Data/Statics/String";
 import JoinOn from "../../../Data/Structures/JoinOn";
 import JoinTableSchema from "../../../Data/Structures/JoinTableSchema";
 import Main from "./Main";
@@ -10,13 +11,13 @@ export default class Join extends Main {
 
     public constructor() {
 
-        super("");
+        super(STRING.EMPTY);
 
         this.joining = false;
 
         this.on = {
-            left: "",
-            right: ""
+            left: STRING.EMPTY,
+            right: STRING.EMPTY
         };
 
     }

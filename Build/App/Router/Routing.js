@@ -15,6 +15,7 @@ const fs_1 = require("fs");
 const Mime_1 = require("./Tools/Mime");
 const Session_1 = require("../Controller/Session");
 const ControllerActionNotFound_1 = require("./Exception/ControllerActionNotFound");
+const String_1 = require("../../Data/Statics/String");
 class Routing {
     constructor(request, response) {
         this.request = request;
@@ -38,14 +39,11 @@ class Routing {
             try {
                 const routerElemet = Router_1.default.getInstance().read(this.request.getUrl(), this.request.getType());
                 const Controller = routerElemet.controller;
-                const cookies = this.request.getHeaders().cookie || "";
-                const session = new Session_1.default(cookies);
-                const controllerInstance = new Controller(session);
-                if (!(routerElemet.action in controllerInstance && typeof controllerInstance[routerElemet.action] === "function")) {
+                const controllerInstance = new Controller(new Session_1.default(this.request.getHeaders().cookie || String_1.STRING.EMPTY));
+                if (!(routerElemet.action in controllerInstance && typeof Controller.prototype[routerElemet.action] === "function")) {
                     throw new ControllerActionNotFound_1.default(Controller.name, routerElemet.action);
                 }
-                const action = controllerInstance[routerElemet.action];
-                const viewResponse = yield action.call(controllerInstance, yield this.request.getParams());
+                const viewResponse = yield Controller.prototype[routerElemet.action].call(controllerInstance, yield this.request.getParams());
                 this.response.sendView(viewResponse);
             }
             catch (errorInstance) {
@@ -55,9 +53,7 @@ class Routing {
     }
     findFile() {
         if (this.request.getType() === HttpMethod_1.HTTP_METHOD.Get && fs_1.existsSync(this.request.getUrl()) && fs_1.lstatSync(this.request.getUrl()).isFile()) {
-            const fileContent = fs_1.readFileSync(this.request.getUrl());
-            const mimeType = new Mime_1.default(this.request.getUrl()).getMime();
-            this.response.sendFile(fileContent, mimeType);
+            this.response.sendFile(fs_1.readFileSync(this.request.getUrl()), new Mime_1.default(this.request.getUrl()).getMime());
             return true;
         }
         return false;

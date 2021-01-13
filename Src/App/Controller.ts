@@ -1,7 +1,8 @@
 import ControllerAction from "../Data/Interfaces/ControllerAction";
+import ViewResponse from "../Data/Structures/ViewResponse";
 import Session from "./Controller/Session";
 
-export default class Controller {
+export default abstract class Controller {
 
     protected session : Session;
 
@@ -11,6 +12,8 @@ export default class Controller {
 
     }
 
-    [ actionName : string ] : ControllerAction | Session;
+    
+
+    
 
 }

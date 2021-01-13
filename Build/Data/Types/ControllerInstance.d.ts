@@ -1,5 +1,6 @@
-import Channel from "../../App/Channel";
+import Controller from "../../App/Controller";
+import Session from "../../App/Controller/Session";
 export declare type ControllerInstance = {
-    new (): Channel;
+    new (session: Session): Controller;
 };
 //# sourceMappingURL=ControllerInstance.d.ts.map

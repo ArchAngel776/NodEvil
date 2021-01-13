@@ -1,13 +1,13 @@
 import ChannelElement from "../../Data/Structures/ChannelElement";
-import Channel from "../Channel";
+import { ChannelInstance } from "../../Data/Types/ChannelInstance";
 
 export default class RouterChannel {
 
     protected path : string;
 
-    protected channel : { new() : Channel };
+    protected channel : ChannelInstance;
 
-    public constructor(path : string, channel : { new() : Channel }) {
+    public constructor(path : string, channel : ChannelInstance) {
 
         this.path = path;
 

@@ -3,6 +3,7 @@ import ChannelElement from "../Data/Structures/ChannelElement";
 import ChannelsStack from "../Data/Structures/ChannelsStack";
 import RouterElement from "../Data/Structures/RouterElement";
 import RouterStack from "../Data/Structures/RouterStack";
+import { ControllerInstance } from "../Data/Types/ControllerInstance";
 import { HttpMethod } from "../Data/Types/HttpMethod";
 import Channel from "./Channel";
 import Controller from "./Controller";
@@ -27,7 +28,7 @@ export default class Router {
 
     }
 
-    public get(path : string, controller : typeof Controller, action : string) : void {
+    public get(path : string, controller : ControllerInstance, action : string) : void {
 
         const element = new ElementOfRouter(path, HTTP_METHOD.Get, controller, action);
 
@@ -35,7 +36,7 @@ export default class Router {
 
     }
 
-    public post(path : string, controller : typeof Controller, action : string) : void {
+    public post(path : string, controller : ControllerInstance, action : string) : void {
 
         const element = new ElementOfRouter(path, HTTP_METHOD.Post, controller, action);
 

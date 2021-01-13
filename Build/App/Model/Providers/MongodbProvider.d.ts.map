@@ -1,1 +1,1 @@
-{"version":3,"file":"MongodbProvider.d.ts","sourceRoot":"","sources":["../../../../Src/App/Model/Providers/MongodbProvider.ts"],"names":[],"mappings":"AAAA,OAAO,gBAAgB,MAAM,qBAAqB,CAAC;AAEnD,MAAM,CAAC,OAAO,OAAO,uBAAwB,SAAQ,gBAAgB;CAIpE"}
+{"version":3,"file":"MongodbProvider.d.ts","sourceRoot":"","sources":["../../../../Src/App/Model/Providers/MongodbProvider.ts"],"names":[],"mappings":"AAAA,OAAO,gBAAgB,MAAM,qBAAqB,CAAC;AAEnD,MAAM,CAAC,OAAO,OAAO,uBAAwB,SAAQ,gBAAgB;IAE1D,MAAM,IAAK,GAAG;IAMd,IAAI,IAAK,GAAG;IAMZ,MAAM,IAAK,GAAG;IAMd,MAAM,IAAK,GAAG;CAMxB"}

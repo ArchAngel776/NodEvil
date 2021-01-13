@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const String_1 = require("../../../Data/Statics/String");
 const Main_1 = require("./Main");
 class Join extends Main_1.default {
     constructor() {
-        super("");
+        super(String_1.STRING.EMPTY);
         this.joining = false;
         this.on = {
-            left: "",
-            right: ""
+            left: String_1.STRING.EMPTY,
+            right: String_1.STRING.EMPTY
         };
     }
     activeJoining() {

@@ -23,9 +23,6 @@ class QueryBuilder {
         this.operation = operation;
     }
     getSchema() {
-        if (this.operation === null) {
-            throw new Error();
-        }
         const result = {
             main: this.main.getSchema(),
             join: this.join.getSchema(),
