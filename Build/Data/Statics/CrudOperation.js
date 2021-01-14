@@ -5,5 +5,5 @@ exports.CRUD_OPERATION = {
     CREATE: "create",
     READ: "read",
     UPDATE: "update",
-    DELETE: " delete"
+    DELETE: "delete"
 };

@@ -16,10 +16,11 @@ export default abstract class Model {
     where(field: string, value: DatabaseValue, operator?: DatabaseConditionOperator): Model;
     or(field: string, value: DatabaseValue, operator?: DatabaseConditionOperator): Model;
     and(field: string, value: DatabaseValue, operator?: DatabaseConditionOperator): Model;
-    insert(data: TableData): any | null;
-    get(): Promise<any | null>;
-    update(data: TableData): any | null;
-    delete(): any | null;
+    insert(data: TableData): Promise<number | null>;
+    get(): Promise<TableData[] | null>;
+    update(data: TableData): Promise<number | null>;
+    delete(): Promise<number | null>;
+    first(): Promise<TableData | null>;
     protected setFieldsAndValuesFromData(data: TableData): void;
     protected createProvider(): DatabaseProvider | never;
     protected get getTable(): string;

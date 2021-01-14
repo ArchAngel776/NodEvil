@@ -10,7 +10,7 @@ class SqlBuilder {
             return String_1.STRING.EMPTY;
         }
         const conditions = this.schema.filter.conditions.map(condition => {
-            return condition.field + " " + condition.operator + " " + (condition.value === null) ? "NULL" : (typeof condition.value === "string") ? `"${condition.value}"` : condition.value;
+            return condition.field + " " + condition.operator + " " + ((condition.value === null) ? "NULL" : (typeof condition.value === "string") ? `'${condition.value}'` : condition.value);
         });
         const elements = [];
         for (let i = 0; i < conditions.length; i++) {

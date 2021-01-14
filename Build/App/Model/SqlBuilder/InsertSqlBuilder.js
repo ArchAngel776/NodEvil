@@ -11,7 +11,7 @@ class InsertSqlBuilder extends SqlBuilder_1.default {
         return result;
     }
     values() {
-        const result = " VALUES (" + this.schema.main.values.map(value => `"${value}"`).join(", ") + ")";
+        const result = " VALUES (" + this.schema.main.values.map(value => `'${value}'`).join(", ") + ")";
         return result;
     }
 }

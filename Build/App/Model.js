@@ -47,15 +47,20 @@ class Model {
         return this;
     }
     insert(data) {
-        this.setFieldsAndValuesFromData(data);
-        this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.CREATE);
-        try {
-        }
-        catch (errorInstance) {
-            const exceptionReader = new ExceptionReader_1.default(errorInstance);
-            exceptionReader.read();
-            return null;
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            this.setFieldsAndValuesFromData(data);
+            this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.CREATE);
+            this.provider.setSchema(this.queryBuilder.getSchema());
+            try {
+                this.provider.validation();
+                return yield this.provider.create();
+            }
+            catch (errorInstance) {
+                const exceptionReader = new ExceptionReader_1.default(errorInstance);
+                exceptionReader.read();
+                return null;
+            }
+        });
     }
     get() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -73,25 +78,44 @@ class Model {
         });
     }
     update(data) {
-        this.setFieldsAndValuesFromData(data);
-        this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.UPDATE);
-        try {
-        }
-        catch (errorInstance) {
-            const exceptionReader = new ExceptionReader_1.default(errorInstance);
-            exceptionReader.read();
-            return null;
-        }
+        return __awaiter(this, void 0, void 0, function* () {
+            this.setFieldsAndValuesFromData(data);
+            this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.UPDATE);
+            this.provider.setSchema(this.queryBuilder.getSchema());
+            try {
+                this.provider.validation();
+                return yield this.provider.update();
+            }
+            catch (errorInstance) {
+                const exceptionReader = new ExceptionReader_1.default(errorInstance);
+                exceptionReader.read();
+                return null;
+            }
+        });
     }
     delete() {
-        this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.DELETE);
-        try {
-        }
-        catch (errorInstance) {
-            const exceptionReader = new ExceptionReader_1.default(errorInstance);
-            exceptionReader.read();
+        return __awaiter(this, void 0, void 0, function* () {
+            this.queryBuilder.changeOperation(CrudOperation_1.CRUD_OPERATION.DELETE);
+            this.provider.setSchema(this.queryBuilder.getSchema());
+            try {
+                this.provider.validation();
+                return yield this.provider.delete();
+            }
+            catch (errorInstance) {
+                const exceptionReader = new ExceptionReader_1.default(errorInstance);
+                exceptionReader.read();
+                return null;
+            }
+        });
+    }
+    first() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.get();
+            if (result !== null && result.length > 0) {
+                return result[0];
+            }
             return null;
-        }
+        });
     }
     setFieldsAndValuesFromData(data) {
         const fields = [], values = [];

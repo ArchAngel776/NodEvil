@@ -1,13 +1,7 @@
 import * as WebSocket from "ws";
-import Init from "../Data/Interfaces/Init";
-export default abstract class Channel implements Init {
+export default abstract class Channel {
     protected socket: WebSocket;
     constructor(socket: WebSocket);
-    init(): void;
-    protected onSocketOpen(event: WebSocket.OpenEvent): void;
-    protected onSocketMessage(event: WebSocket.MessageEvent): void;
-    protected onSocketClose(event: WebSocket.CloseEvent): void;
-    protected onSocketError(event: WebSocket.ErrorEvent): void;
     protected sendJSON(data: object): void;
     protected sendText(data: string): void;
     abstract onOpen(): void;

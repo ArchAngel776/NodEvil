@@ -35,7 +35,7 @@ export default class MysqlDatabaseProvider extends DatabaseProvider {
 
                 if (error) throw error;
 
-                this.connection.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build(), (error : MySql.MysqlError, result) => {
+                this.connection.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build(), (error : MySql.MysqlError, result : any) => {
 
                     if (error) throw error;
 

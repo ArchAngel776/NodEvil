@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Router_1 = require("../../Router");
+const SocketClient_1 = require("./SocketClient");
 class SocketRouter {
     constructor(socket, request) {
         this.socket = socket;
@@ -8,9 +9,8 @@ class SocketRouter {
     }
     init() {
         const channelElement = Router_1.default.getInstance().readChannel(this.request.getUrl());
-        const Channel = channelElement.channel;
-        const channel = new Channel(this.socket);
-        channel.init();
+        const client = new SocketClient_1.default(this.socket, channelElement.channel);
+        client.init();
     }
 }
 exports.default = SocketRouter;

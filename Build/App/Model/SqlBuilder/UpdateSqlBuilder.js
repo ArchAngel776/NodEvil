@@ -9,7 +9,7 @@ class UpdateSqlBuilder extends SqlBuilder_1.default {
     set() {
         const elements = [];
         for (let i = 0; i < this.schema.main.fields.length; i++) {
-            elements.push(this.schema.main.fields[i] + " = \"" + this.schema.main.values[i] + "\"");
+            elements.push(`${this.schema.main.fields[i]} = '${this.schema.main.values[i]}'`);
         }
         const result = " SET " + elements.join(", ");
         return result;

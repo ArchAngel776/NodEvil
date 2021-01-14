@@ -81,17 +81,19 @@ export default abstract class Model {
 
     }
 
-    public insert(data : TableData) : any | null {
+    public async insert(data : TableData) : Promise<number | null> {
 
         this.setFieldsAndValuesFromData(data);
 
         this.queryBuilder.changeOperation(CRUD_OPERATION.CREATE);
 
-        
+        this.provider.setSchema(this.queryBuilder.getSchema());
 
         try {
 
-            
+            this.provider.validation();
+
+            return await this.provider.create();
 
         }
 
@@ -107,7 +109,7 @@ export default abstract class Model {
 
     }
 
-    public async get() : Promise<any | null> {
+    public async get() : Promise<TableData[] | null> {
 
         this.queryBuilder.changeOperation(CRUD_OPERATION.READ);
 
@@ -133,15 +135,19 @@ export default abstract class Model {
 
     }
 
-    public update(data : TableData) : any | null {
+    public async update(data : TableData) : Promise<number | null> {
 
         this.setFieldsAndValuesFromData(data);
 
         this.queryBuilder.changeOperation(CRUD_OPERATION.UPDATE);
 
+        this.provider.setSchema(this.queryBuilder.getSchema());
+
         try {
 
-            
+            this.provider.validation();
+
+            return await this.provider.update();
 
         }
 
@@ -157,13 +163,17 @@ export default abstract class Model {
 
     }
 
-    public delete() : any | null {
+    public async delete() : Promise<number | null> {
 
         this.queryBuilder.changeOperation(CRUD_OPERATION.DELETE);
 
+        this.provider.setSchema(this.queryBuilder.getSchema());
+
         try {
 
-            
+            this.provider.validation();
+
+            return await this.provider.delete();
 
         }
 
@@ -176,6 +186,20 @@ export default abstract class Model {
             return null;
 
         }
+
+    }
+
+    public async first() : Promise<TableData | null> {
+
+        const result = await this.get();
+
+        if (result !== null && result.length > 0) {
+
+            return result[0];
+
+        }
+
+        return null;
 
     }
 

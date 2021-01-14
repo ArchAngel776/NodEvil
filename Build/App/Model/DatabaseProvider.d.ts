@@ -10,7 +10,7 @@ export default abstract class DatabaseProvider implements Validation {
     validation(): void | never;
     abstract create(): Promise<number | never>;
     abstract read(): Promise<TableData[] | never>;
-    abstract update(): Promise<TableData[] | never>;
+    abstract update(): Promise<number | never>;
     abstract delete(): Promise<number | never>;
 }
 //# sourceMappingURL=DatabaseProvider.d.ts.map

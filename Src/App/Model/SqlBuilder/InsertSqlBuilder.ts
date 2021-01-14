@@ -20,7 +20,7 @@ export default class InsertSqlBuilder extends SqlBuilder {
 
     protected values() : string {
 
-        const result = " VALUES (" + this.schema.main.values.map(value => `"${value}"`).join(", ") + ")";
+        const result = " VALUES (" + this.schema.main.values.map(value => `'${value}'`).join(", ") + ")";
 
         return result;
 
