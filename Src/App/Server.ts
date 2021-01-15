@@ -8,7 +8,7 @@ import HttpVersionUnsupported from "./Server/Exception/HttpVersionUnsupported";
 import Core from "./Server/Foundations/Core";
 import Http2Core from "./Server/Foundations/Http2Core";
 import HttpCore from "./Server/Foundations/HttpCore";
-import SocketServer from "./Server/Socket/SocketServer";
+import SocketServer from "./Channel/SocketServer";
 import SslObject from "./Server/SslObject";
 import ConfigValidator from "./Server/Validation/ConfigValidator";
 

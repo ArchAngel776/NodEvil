@@ -5,6 +5,8 @@ export default abstract class Auth {
 
     protected session : Session;
 
+    protected abstract authName : string;
+
     public constructor(session : Session) {
 
         this.session = session;

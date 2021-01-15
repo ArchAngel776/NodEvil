@@ -6,7 +6,7 @@ const Model_1 = require("./Model");
 const HttpVersionUnsupported_1 = require("./Server/Exception/HttpVersionUnsupported");
 const Http2Core_1 = require("./Server/Foundations/Http2Core");
 const HttpCore_1 = require("./Server/Foundations/HttpCore");
-const SocketServer_1 = require("./Server/Socket/SocketServer");
+const SocketServer_1 = require("./Channel/SocketServer");
 const SslObject_1 = require("./Server/SslObject");
 const ConfigValidator_1 = require("./Server/Validation/ConfigValidator");
 class Server {

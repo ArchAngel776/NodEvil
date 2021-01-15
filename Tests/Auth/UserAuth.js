@@ -3,7 +3,15 @@ const User = require("../Models/User");
 
 module.exports = class UserAuth extends Auth {
 
+    authName = "user";
+
     async authorized() {
+
+        if (!this.session.has("authType") || this.session.get("authType") !== this.authName) {
+
+            return false;
+
+        }
 
         if (!this.session.has("username") || !this.session.has("password")) {
 
@@ -41,6 +49,8 @@ module.exports = class UserAuth extends Auth {
 
         }
 
+        this.session.set("authType", this.authName);
+
         this.session.set("username", user.username);
 
         this.session.set("password", user.password);
@@ -60,6 +70,8 @@ module.exports = class UserAuth extends Auth {
     }
 
     async reject() {
+
+        this.session.delete("authType");
 
         this.session.delete("username");
 

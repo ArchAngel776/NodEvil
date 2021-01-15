@@ -1,7 +1,7 @@
 import * as WebSocket from "ws";
-import Init from "../../../Data/Interfaces/Init";
-import { ChannelInstance } from "../../../Data/Types/ChannelInstance";
-import Channel from "../../Channel";
+import Init from "../../Data/Interfaces/Init";
+import { ChannelInstance } from "../../Data/Types/ChannelInstance";
+import Channel from "../Channel";
 
 export default class SocketClient implements Init {
 

@@ -14,5 +14,27 @@ class Url {
         const result = JSON.parse(JSON.stringify(qs.parse(paramString)));
         return result;
     }
+    setParams(params) {
+        const segments = [];
+        for (const key in params)
+            segments.push(`${key}=${params[key]}`);
+        this.fullPath = this.pure() + "?" + segments.join("&");
+    }
+    full() {
+        console.log(this.fullPath.split("/").splice(3, this.fullPath.split("/").length - 3));
+        return this.fullPath;
+    }
+    domain() {
+        const segments = this.fullPath.split("/");
+        const domainSegments = segments.splice(0, 3);
+        const result = domainSegments.join("/");
+        return result;
+    }
+    path() {
+        const segments = this.fullPath.split("/");
+        const pathSegments = segments.splice(3, segments.length - 3);
+        const result = "/" + pathSegments.join("/");
+        return result;
+    }
 }
 exports.default = Url;

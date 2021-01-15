@@ -4,5 +4,9 @@ export default class Url {
     constructor(fullPath: string);
     pure(): string;
     params(): HttpRequestBody;
+    setParams(params: HttpRequestBody): void;
+    full(): string;
+    domain(): string;
+    path(): string;
 }
 //# sourceMappingURL=Url.d.ts.map

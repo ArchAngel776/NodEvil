@@ -1,10 +1,10 @@
-import Init from "../../../Data/Interfaces/Init";
-import { HttpPossibleCore } from "../../../Data/Types/HttpPossibleCore";
+import Init from "../../Data/Interfaces/Init";
+import { HttpPossibleCore } from "../../Data/Types/HttpPossibleCore";
 import * as WebSocket from "ws";
 import { IncomingMessage, Server } from "http";
-import ExceptionReader from "../../Exception/ExceptionReader";
-import Request from "../Stream/Request";
-import { HTTP_VERSION } from "../../../Data/Statics/HttpVersion";
+import ExceptionReader from "../Exception/ExceptionReader";
+import Request from "../Server/Stream/Request";
+import { HTTP_VERSION } from "../../Data/Statics/HttpVersion";
 import SocketRouter from "./SocketRouter";
 
 export default class SocketServer implements Init {

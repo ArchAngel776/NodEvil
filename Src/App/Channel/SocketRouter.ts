@@ -1,7 +1,7 @@
 import * as WebSocket from "ws";
-import Init from "../../../Data/Interfaces/Init";
-import Router from "../../Router";
-import Request from "../Stream/Request";
+import Init from "../../Data/Interfaces/Init";
+import Router from "../Router";
+import Request from "../Server/Stream/Request";
 import SocketClient from "./SocketClient";
 
 export default class SocketRouter implements Init {

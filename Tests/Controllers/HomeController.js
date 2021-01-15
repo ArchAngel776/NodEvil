@@ -2,8 +2,15 @@ const Controller = require("../../Build/index").Controller;
 const View = require("../../Build/index").View;
 const User = require("../Models/User");
 const UserAuth = require("../Auth/UserAuth");
+const Client = require("../../Build/index").Client;
 
 module.exports = class HomeController extends Controller {
+
+    init() {
+
+        
+
+    }
 
     async index() {
 
@@ -16,6 +23,16 @@ module.exports = class HomeController extends Controller {
     }
 
     async login() {
+
+        const response = await new Client("2.0").url("https://maps.googleapis.com/maps/api/place/autocomplete/json")
+            .headers({
+                "accept": "application/json"
+            })
+            .body({
+                "key": "AIzaSyAqj5NIohCecPc9sjda7vtJc3UBJYQmpYA",
+                "input": "Prusy"
+            })
+            .get();
 
         return (await new UserAuth(this.session).authorized()) ? 
         
