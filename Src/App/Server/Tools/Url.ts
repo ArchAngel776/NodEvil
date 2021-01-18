@@ -41,8 +41,6 @@ export default class Url {
 
     public full() : string {
 
-        console.log(this.fullPath.split("/").splice(3, this.fullPath.split("/").length - 3));
-
         return this.fullPath;
 
     }

@@ -11,8 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const https = require("https");
 const HttpMethod_1 = require("../../../Data/Statics/HttpMethod");
-const HttpVersion_1 = require("../../../Data/Statics/HttpVersion");
-const Request_1 = require("../../Server/Stream/Request");
 const Url_1 = require("../../Server/Tools/Url");
 const ClientProvider_1 = require("../ClientProvider");
 class HttpClientProvider extends ClientProvider_1.default {
@@ -25,11 +23,13 @@ class HttpClientProvider extends ClientProvider_1.default {
                     method: HttpMethod_1.HTTP_METHOD.Get,
                     headers: this.headers
                 };
-                const httpRequest = https.request(url.full(), options, (req) => __awaiter(this, void 0, void 0, function* () {
-                    const request = new Request_1.default(HttpVersion_1.HTTP_VERSION.v1_1, req);
-                    const result = yield request.getParams();
-                    resolve(result);
-                }));
+                const httpRequest = https.request(url.full(), options, (req) => {
+                    let dataString = "";
+                    req.on("data", chunk => dataString += chunk);
+                    req.on("end", () => {
+                        resolve(dataString);
+                    });
+                });
                 httpRequest.end();
             });
         });
@@ -41,12 +41,14 @@ class HttpClientProvider extends ClientProvider_1.default {
                     method: HttpMethod_1.HTTP_METHOD.Post,
                     headers: this.headers
                 };
-                const httpRequest = https.request(this.url, options, (req) => __awaiter(this, void 0, void 0, function* () {
-                    const request = new Request_1.default(HttpVersion_1.HTTP_VERSION.v1_1, req);
-                    const result = yield request.getParams();
-                    resolve(result);
-                }));
-                httpRequest.write(JSON.stringify(this.body));
+                const httpRequest = https.request(this.url, options, (req) => {
+                    let dataString = "";
+                    req.on("data", chunk => dataString += chunk);
+                    req.on("end", () => {
+                        resolve(dataString);
+                    });
+                });
+                httpRequest.write(this.body);
                 httpRequest.end();
             });
         });

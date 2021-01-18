@@ -13,15 +13,13 @@ export default class Http2ClientProvider extends ClientProvider {
 
             url.setParams(this.body);
 
-            const client = http2.connect(url.domain());
-
-            client.on('error', (err) => console.log(err));
-
             const headers : http2.OutgoingHttpHeaders = {
                 ":path": url.path(),
                 ":method": HTTP_METHOD.Get,
                 ...this.headers
             }
+
+            const client = http2.connect(url.domain());
 
             const req = client.request(headers);
 
@@ -55,15 +53,13 @@ export default class Http2ClientProvider extends ClientProvider {
 
             const url = new Url(this.url);
 
-            const client = http2.connect(url.domain());
-
-            client.on('error', (err) => console.log(err));
-
             const headers : http2.OutgoingHttpHeaders = {
                 ":path": url.path(),
                 ":method": HTTP_METHOD.Post,
                 ...this.headers
             }
+
+            const client = http2.connect(url.domain());
 
             const req = client.request(headers);
 
@@ -85,7 +81,7 @@ export default class Http2ClientProvider extends ClientProvider {
 
             });
 
-            req.write(JSON.stringify(this.body));
+            req.write(this.body);
 
             req.end();
 

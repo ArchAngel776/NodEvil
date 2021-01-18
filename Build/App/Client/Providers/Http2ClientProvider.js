@@ -19,9 +19,8 @@ class Http2ClientProvider extends ClientProvider_1.default {
             return new Promise(resolve => {
                 const url = new Url_1.default(this.url);
                 url.setParams(this.body);
-                const client = http2.connect(url.domain());
-                client.on('error', (err) => console.log(err));
                 const headers = Object.assign({ ":path": url.path(), ":method": HttpMethod_1.HTTP_METHOD.Get }, this.headers);
+                const client = http2.connect(url.domain());
                 const req = client.request(headers);
                 req.setEncoding("utf-8");
                 let data = "";
@@ -40,9 +39,8 @@ class Http2ClientProvider extends ClientProvider_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise(resolve => {
                 const url = new Url_1.default(this.url);
-                const client = http2.connect(url.domain());
-                client.on('error', (err) => console.log(err));
                 const headers = Object.assign({ ":path": url.path(), ":method": HttpMethod_1.HTTP_METHOD.Post }, this.headers);
+                const client = http2.connect(url.domain());
                 const req = client.request(headers);
                 req.setEncoding("utf-8");
                 let data = "";
@@ -53,7 +51,7 @@ class Http2ClientProvider extends ClientProvider_1.default {
                     client.close();
                     resolve(data);
                 });
-                req.write(JSON.stringify(this.body));
+                req.write(this.body);
                 req.end();
             });
         });

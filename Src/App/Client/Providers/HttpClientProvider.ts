@@ -1,8 +1,6 @@
 import { IncomingMessage } from "http";
 import * as https from "https";
 import { HTTP_METHOD } from "../../../Data/Statics/HttpMethod";
-import { HTTP_VERSION } from "../../../Data/Statics/HttpVersion";
-import Request from "../../Server/Stream/Request";
 import Url from "../../Server/Tools/Url";
 import ClientProvider from "../ClientProvider";
 
@@ -21,13 +19,17 @@ export default class HttpClientProvider extends ClientProvider {
                 headers: this.headers
             };
 
-            const httpRequest = https.request(url.full() , options, async (req : IncomingMessage) => {
+            const httpRequest = https.request(url.full() , options, (req : IncomingMessage) => {
 
-                const request = new Request(HTTP_VERSION.v1_1, req);
+                let dataString = "";
 
-                const result = await request.getParams();
+                req.on("data", chunk => dataString += chunk);
 
-                resolve(result);
+                req.on("end", () => {
+
+                    resolve(dataString);
+
+                });
 
             });
 
@@ -46,17 +48,21 @@ export default class HttpClientProvider extends ClientProvider {
                 headers: this.headers
             };
 
-            const httpRequest = https.request(this.url, options, async (req : IncomingMessage) => {
+            const httpRequest = https.request(this.url, options, (req : IncomingMessage) => {
 
-                const request = new Request(HTTP_VERSION.v1_1, req);
+                let dataString = "";
 
-                const result = await request.getParams();
+                req.on("data", chunk => dataString += chunk);
 
-                resolve(result);
+                req.on("end", () => {
+
+                    resolve(dataString);
+
+                });
 
             });
 
-            httpRequest.write(JSON.stringify(this.body));
+            httpRequest.write(this.body);
 
             httpRequest.end();
 

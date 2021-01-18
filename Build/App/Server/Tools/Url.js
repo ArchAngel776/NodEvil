@@ -21,7 +21,6 @@ class Url {
         this.fullPath = this.pure() + "?" + segments.join("&");
     }
     full() {
-        console.log(this.fullPath.split("/").splice(3, this.fullPath.split("/").length - 3));
         return this.fullPath;
     }
     domain() {

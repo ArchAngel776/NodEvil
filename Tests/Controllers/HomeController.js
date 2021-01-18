@@ -18,13 +18,13 @@ module.exports = class HomeController extends Controller {
         
             new View(this.session).route("/home").redirect() : 
             
-            new View(this.session).route("/login");
+            new View(this.session).route("/login").redirect();
 
     }
 
     async login() {
 
-        const response = await new Client("2.0").url("https://maps.googleapis.com/maps/api/place/autocomplete/json")
+        const response = await new Client("1.1").url("https://maps.googleapis.com/maps/api/place/autocomplete/json")
             .headers({
                 "accept": "application/json"
             })
@@ -33,6 +33,8 @@ module.exports = class HomeController extends Controller {
                 "input": "Prusy"
             })
             .get();
+
+        console.log(response)
 
         return (await new UserAuth(this.session).authorized()) ? 
         
