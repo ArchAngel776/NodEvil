@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Cookie = require("cookie");
+const Storage_1 = require("./Session/Storage");
 class Session {
     constructor(cookies) {
-        this.cookies = JSON.parse(Cookie.parse(cookies).session || "{}");
+        this.cookies = Storage_1.default.get(Cookie.parse(cookies).session || "");
     }
     has(key) {
         return this.cookies[key] !== undefined;
@@ -18,7 +19,7 @@ class Session {
         delete this.cookies[key];
     }
     flush() {
-        return JSON.stringify(this.cookies);
+        return this.cookies;
     }
 }
 exports.default = Session;

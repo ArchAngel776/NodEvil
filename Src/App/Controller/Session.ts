@@ -1,5 +1,6 @@
 import * as Cookie from "cookie";
 import CookieStructure from "../../Data/Structures/CookieStructure";
+import Storage from "./Session/Storage";
 
 export default class Session {
 
@@ -7,7 +8,7 @@ export default class Session {
 
     public constructor(cookies : string) {
 
-        this.cookies = JSON.parse(Cookie.parse(cookies).session || "{}");
+        this.cookies = Storage.get(Cookie.parse(cookies).session || "");
 
     }
 
@@ -35,9 +36,9 @@ export default class Session {
 
     }
 
-    public flush() : string {
+    public flush() : CookieStructure {
 
-        return JSON.stringify(this.cookies);
+        return this.cookies;
 
     }
 

@@ -1,5 +1,7 @@
 import ViewResponse from "../../Data/Structures/ViewResponse";
 import Session from "../Controller/Session";
+import Generator from "../Controller/Session/Generator";
+import Storage from "../Controller/Session/Storage";
 
 export default abstract class ViewType {
 
@@ -13,7 +15,13 @@ export default abstract class ViewType {
 
     protected withSession(viewResponse : ViewResponse) : ViewResponse {
 
-        viewResponse.headers["Set-cookie"] = "session=" + this.session.flush() + "; Path=/; HttpOnly; Secure; SameSite=strict;";
+        const sessionToken = new Generator(48).generate();
+
+        let save = false;
+
+        while (!save) save = Storage.set(sessionToken, this.session.flush());
+
+        viewResponse.headers["Set-cookie"] = "session=" + sessionToken + "; Path=/; HttpOnly; Secure; SameSite=strict;";
 
         return viewResponse;
 

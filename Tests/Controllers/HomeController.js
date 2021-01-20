@@ -24,17 +24,7 @@ module.exports = class HomeController extends Controller {
 
     async login() {
 
-        const response = await new Client("1.1").url("https://maps.googleapis.com/maps/api/place/autocomplete/json")
-            .headers({
-                "accept": "application/json"
-            })
-            .body({
-                "key": "AIzaSyAqj5NIohCecPc9sjda7vtJc3UBJYQmpYA",
-                "input": "Prusy"
-            })
-            .get();
-
-        console.log(response)
+        
 
         return (await new UserAuth(this.session).authorized()) ? 
         

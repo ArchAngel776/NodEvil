@@ -13,7 +13,7 @@ class Data extends ViewType_1.default {
             headers: {
                 "Content-type": "text/plain"
             },
-            content: this.data
+            content: typeof this.data === "string" ? this.data : this.data.toString()
         };
         return this.withSession(response);
     }
@@ -33,7 +33,7 @@ class Data extends ViewType_1.default {
             headers: {
                 "Content-type": "application/json"
             },
-            content: this.data
+            content: typeof this.data === "string" ? this.data : JSON.stringify(this.data)
         };
         return this.withSession(response);
     }

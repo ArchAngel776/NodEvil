@@ -13,37 +13,23 @@ module.exports = class UserAuth extends Auth {
 
         }
 
-        if (!this.session.has("username") || !this.session.has("password")) {
+        if (!this.session.has("username")) {
 
             return false;
 
         }
 
-        const username = this.session.get("username"), password = this.session.get("password");
+        const result = await new User().checkUserExist(this.session.get("username"));
 
-        const user = await new User().from("users").select("username", "password").where("username", username).and("password", password).first();
-
-        if (user === null) {
-
-            return false;
-
-        }
-
-        if (user.username !== username || user.password !== password) {
-
-            return false;
-
-        }
-
-        return true;
+        return result;
 
     }
 
     async authorization(username, password) {
 
-        const user = await new User().from("users").select("username", "password").where("username", username).and("password", password).first();
+        const result = await new User().login(username, password);
 
-        if (user === null) {
+        if (!result) {
 
             return false;
 
@@ -51,9 +37,7 @@ module.exports = class UserAuth extends Auth {
 
         this.session.set("authType", this.authName);
 
-        this.session.set("username", user.username);
-
-        this.session.set("password", user.password);
+        this.session.set("username", username);
 
         return true;
 
@@ -61,11 +45,11 @@ module.exports = class UserAuth extends Auth {
 
     async getField(fieldName) {
 
-        const username = this.session.get("username"), password = this.session.get("password");
+        const username = this.session.get("username");
 
-        const user = await new User().from("users").where("username", username).and("password", password).first();
+        const result = await new User().getField(username, fieldName);
 
-        return user[fieldName];
+        return result;
 
     }
 
@@ -74,8 +58,6 @@ module.exports = class UserAuth extends Auth {
         this.session.delete("authType");
 
         this.session.delete("username");
-
-        this.session.delete("password");
 
     }
 

@@ -1,3 +1,4 @@
+import { HTTP_STATUS } from "../../../Data/Statics/HttpStatus";
 import ViewResponse from "../../../Data/Structures/ViewResponse";
 import Session from "../../Controller/Session";
 import ViewType from "../ViewType";
@@ -17,7 +18,7 @@ export default class Route extends ViewType {
     public redirect() : ViewResponse {
 
         const response : ViewResponse = {
-            status: 301,
+            status: HTTP_STATUS.REDIRECT,
             headers: {
                 "Location": this.path
             }

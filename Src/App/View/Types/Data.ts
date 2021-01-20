@@ -22,7 +22,7 @@ export default class Data extends ViewType {
             headers: {
                 "Content-type": "text/plain"
             },
-            content: this.data
+            content: typeof this.data === "string" ? this.data : this.data.toString()
         };
 
         return this.withSession(response);
@@ -50,7 +50,7 @@ export default class Data extends ViewType {
             headers: {
                 "Content-type": "application/json"
             },
-            content: this.data
+            content: typeof this.data === "string" ? this.data : JSON.stringify(this.data)
         };
 
         return this.withSession(response);
