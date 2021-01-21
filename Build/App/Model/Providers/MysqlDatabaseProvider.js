@@ -16,24 +16,22 @@ const InsertSqlBuilder_1 = require("../SqlBuilder/InsertSqlBuilder");
 const UpdateSqlBuilder_1 = require("../SqlBuilder/UpdateSqlBuilder");
 const DeleteSqlBuilder_1 = require("../SqlBuilder/DeleteSqlBuilder");
 class MysqlDatabaseProvider extends DatabaseProvider_1.default {
-    constructor(config) {
-        super(config);
-        this.connection = MySql.createConnection({
-            host: this.config.host,
-            port: this.config.port,
-            user: this.config.username,
-            password: this.config.password,
-            database: this.config.dbname
-        });
-    }
     operation(SqlBuilder) {
         return new Promise(resolve => {
-            this.connection.connect((error) => {
+            const connection = MySql.createConnection({
+                host: this.config.host,
+                port: this.config.port,
+                user: this.config.username,
+                password: this.config.password,
+                database: this.config.dbname
+            });
+            connection.connect((error) => {
                 if (error)
                     throw error;
-                this.connection.query(new SqlBuilder(this.queryBuilderSchema).build(), (error, result) => {
+                connection.query(new SqlBuilder(this.queryBuilderSchema).build(), (error, result) => {
                     if (error)
                         throw error;
+                    connection.end();
                     resolve(result);
                 });
             });

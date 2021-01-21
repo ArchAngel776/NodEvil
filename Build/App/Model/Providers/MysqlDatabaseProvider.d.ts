@@ -1,11 +1,7 @@
 import DatabaseProvider from "../DatabaseProvider";
-import * as MySql from "mysql";
-import DatabaseConfig from "../../../Data/Structures/DatabaseConfig";
 import TableData from "../../../Data/Structures/TableData";
 import { SqlBuilderInstance } from "../../../Data/Types/SqlBuilderInstance";
 export default class MysqlDatabaseProvider extends DatabaseProvider {
-    protected connection: MySql.Connection;
-    constructor(config: DatabaseConfig);
     protected operation(SqlBuilder: SqlBuilderInstance): Promise<any | never>;
     create(): Promise<number | never>;
     read(): Promise<TableData[] | never>;

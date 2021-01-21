@@ -11,13 +11,9 @@ import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 
 export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
-    protected client : PostgreSql.Client;
+    protected async operation(SqlBuilder : SqlBuilderInstance) : Promise<PostgreSql.QueryResult | never> {
 
-    public constructor(config : DatabaseConfig) {
-
-        super(config);
-
-        this.client = new PostgreSql.Client({
+        const client = new PostgreSql.Client({
             host: this.config.host,
             port: this.config.port,
             user: this.config.username,
@@ -25,15 +21,11 @@ export default class PostgresqlDatabaseProvider extends DatabaseProvider {
             database: this.config.dbname
         });
 
-    }
+        await client.connect();
 
-    protected async operation(SqlBuilder : SqlBuilderInstance) : Promise<PostgreSql.QueryResult | never> {
+        const result = await client.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build());
 
-        await this.client.connect();
-
-        const result = await this.client.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build());
-
-        await this.client.end();
+        await client.end();
 
         return result;
 

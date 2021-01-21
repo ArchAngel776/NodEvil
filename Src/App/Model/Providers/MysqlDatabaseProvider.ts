@@ -11,35 +11,29 @@ import DeleteSqlBuilder from "../SqlBuilder/DeleteSqlBuilder";
 
 export default class MysqlDatabaseProvider extends DatabaseProvider {
 
-    protected connection : MySql.Connection;
-
-    public constructor(config : DatabaseConfig) {
-
-        super(config);
-
-        this.connection = MySql.createConnection({
-            host: this.config.host,
-            port: this.config.port,
-            user: this.config.username,
-            password: this.config.password,
-            database: this.config.dbname
-        })
-
-    }
-
     protected operation(SqlBuilder : SqlBuilderInstance) : Promise<any | never> {
 
         return new Promise(resolve => {
 
-            this.connection.connect((error : MySql.MysqlError) => {
+            const connection = MySql.createConnection({
+                host: this.config.host,
+                port: this.config.port,
+                user: this.config.username,
+                password: this.config.password,
+                database: this.config.dbname
+            });
+
+            connection.connect((error : MySql.MysqlError) => {
 
                 if (error) throw error;
 
-                this.connection.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build(), (error : MySql.MysqlError, result : any) => {
+                connection.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build(), (error : MySql.MysqlError, result : any) => {
 
                     if (error) throw error;
 
-                    resolve(result)
+                    connection.end();
+
+                    resolve(result);
 
                 })
 
