@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class SocketClient {
-    constructor(socket, Channel) {
+    constructor(socket, Channel, session) {
         this.socket = socket;
-        this.channel = new Channel(this.socket);
+        this.session = session;
+        this.channel = new Channel(this.socket, this.session);
     }
     init() {
         this.socket.onopen = this.onSocketOpen.bind(this);

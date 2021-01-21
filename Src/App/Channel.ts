@@ -1,12 +1,17 @@
 import * as WebSocket from "ws";
+import Session from "./Controller/Session";
 
 export default abstract class Channel {
 
     protected socket : WebSocket;
 
-    public constructor(socket : WebSocket) {
+    protected session : Session;
+
+    public constructor(socket : WebSocket, session : Session) {
 
         this.socket = socket;
+
+        this.session = session;
 
     }
 

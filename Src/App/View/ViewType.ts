@@ -1,5 +1,6 @@
 import ViewResponse from "../../Data/Structures/ViewResponse";
 import Session from "../Controller/Session";
+import Cookie from "../Controller/Session/Cookie";
 import Generator from "../Controller/Session/Generator";
 import Storage from "../Controller/Session/Storage";
 
@@ -21,7 +22,7 @@ export default abstract class ViewType {
 
         while (!save) save = Storage.set(sessionToken, this.session.flush());
 
-        viewResponse.headers["Set-cookie"] = "session=" + sessionToken + "; Path=/; HttpOnly; Secure; SameSite=strict;";
+        viewResponse.headers["Set-cookie"] = new Cookie("session").Set(sessionToken).SameSite("Lax").HttpOnly().Secure().Extract();
 
         return viewResponse;
 

@@ -2,18 +2,23 @@ import * as WebSocket from "ws";
 import Init from "../../Data/Interfaces/Init";
 import { ChannelInstance } from "../../Data/Types/ChannelInstance";
 import Channel from "../Channel";
+import Session from "../Controller/Session";
 
 export default class SocketClient implements Init {
 
     protected socket : WebSocket;
 
+    protected session : Session;
+
     protected channel : Channel;
 
-    public constructor(socket : WebSocket, Channel : ChannelInstance) {
+    public constructor(socket : WebSocket, Channel : ChannelInstance, session : Session) {
 
         this.socket = socket;
 
-        this.channel = new Channel(this.socket);
+        this.session = session;
+
+        this.channel = new Channel(this.socket, this.session);
 
     }
 

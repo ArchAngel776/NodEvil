@@ -24,8 +24,6 @@ module.exports = class HomeController extends Controller {
 
     async login() {
 
-        
-
         return (await new UserAuth(this.session).authorized()) ? 
         
             new View(this.session).route("/home").redirect() : 

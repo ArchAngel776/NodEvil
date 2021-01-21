@@ -1,1 +1,1 @@
-{"version":3,"file":"ControllerInstance.d.ts","sourceRoot":"","sources":["../../../Src/Data/Types/ControllerInstance.ts"],"names":[],"mappings":"AAAA,OAAO,UAAU,MAAM,sBAAsB,CAAC;AAC9C,OAAO,OAAO,MAAM,8BAA8B,CAAC;AAEnD,oBAAY,kBAAkB,GAAG;IAAE,KAAI,OAAO,EAAG,OAAO,GAAI,UAAU,CAAA;CAAE,CAAC"}
+{"version":3,"file":"ControllerInstance.d.ts","sourceRoot":"","sources":["../../../Src/Data/Types/ControllerInstance.ts"],"names":[],"mappings":"AAAA,OAAO,UAAU,MAAM,sBAAsB,CAAC;AAC9C,OAAO,OAAO,MAAM,8BAA8B,CAAC;AAEnD,oBAAY,kBAAkB,GAAG;IAAE,KAAK,OAAO,EAAG,OAAO,GAAI,UAAU,CAAA;CAAE,CAAC"}
