@@ -6,6 +6,7 @@ import View_1 from "./App/View";
 import Auth_1 from "./App/Auth";
 import Channel_1 from "./App/Channel";
 import Client_1 from "./App/Client";
+import Validator_1 from "./App/Validator";
 
 export const Server = Server_1;
 export const Router = Router_1.getInstance();
@@ -15,3 +16,4 @@ export const View = View_1;
 export const Auth = Auth_1;
 export const Channel = Channel_1;
 export const Client = Client_1;
+export const Validator = Validator_1;

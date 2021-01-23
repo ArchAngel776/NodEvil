@@ -3,6 +3,7 @@ const View = require("../../Build/index").View;
 const User = require("../Models/User");
 const UserAuth = require("../Auth/UserAuth");
 const Client = require("../../Build/index").Client;
+const Validator = require("../../Build/index").Validator;
 
 module.exports = class HomeController extends Controller {
 
@@ -29,6 +30,17 @@ module.exports = class HomeController extends Controller {
             new View(this.session).route("/home").redirect() : 
             
             new View(this.session).site("./Tests/Views/login.html").show();
+
+    }
+
+    async register(params) {
+
+        console.log(new Validator(params).validation({
+            username: {
+                type: "string",
+                
+            }
+        }))
 
     }
 

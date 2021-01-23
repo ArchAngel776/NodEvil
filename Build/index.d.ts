@@ -6,6 +6,7 @@ import View_1 from "./App/View";
 import Auth_1 from "./App/Auth";
 import Channel_1 from "./App/Channel";
 import Client_1 from "./App/Client";
+import Validator_1 from "./App/Validator";
 export declare const Server: typeof Server_1;
 export declare const Router: Router_1;
 export declare const Controller: typeof Controller_1;
@@ -14,4 +15,5 @@ export declare const View: typeof View_1;
 export declare const Auth: typeof Auth_1;
 export declare const Channel: typeof Channel_1;
 export declare const Client: typeof Client_1;
+export declare const Validator: typeof Validator_1;
 //# sourceMappingURL=index.d.ts.map
