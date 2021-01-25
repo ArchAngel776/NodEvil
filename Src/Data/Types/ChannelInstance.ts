@@ -1,5 +1,5 @@
 import Channel from "../../App/Channel";
 import * as WebSocket from "ws";
-import Session from "../../App/Controller/Session";
+import SocketSession from "../../App/Channel/SocketSession";
 
-export type ChannelInstance = { new (socket : WebSocket, session : Session) : Channel };
+export type ChannelInstance = { new (socket : WebSocket, session : SocketSession) : Channel };

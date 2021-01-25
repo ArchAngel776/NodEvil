@@ -1,14 +1,13 @@
 import * as WebSocket from "ws";
-import { View } from "..";
-import Session from "./Controller/Session";
+import SocketSession from "./Channel/SocketSession";
 
 export default abstract class Channel {
 
     protected socket : WebSocket;
 
-    protected session : Session;
+    protected session : SocketSession;
 
-    public constructor(socket : WebSocket, session : Session) {
+    public constructor(socket : WebSocket, session : SocketSession) {
 
         this.socket = socket;
 
@@ -18,13 +17,13 @@ export default abstract class Channel {
 
     protected sendJSON(data : object) : void {
 
-        this.socket.send(JSON.stringify(new View(this.session).data(data).json()));
+        this.socket.send(JSON.stringify(data));
 
     }
 
-    protected sendText(data : string) : void {
+    protected sendText(data : number | string) : void {
 
-        this.socket.send(JSON.stringify(new View(this.session).data(data).plain()));
+        this.socket.send(data.toString());
 
     }
 

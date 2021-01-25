@@ -1,11 +1,11 @@
 import * as WebSocket from "ws";
-import Session from "./Controller/Session";
+import SocketSession from "./Channel/SocketSession";
 export default abstract class Channel {
     protected socket: WebSocket;
-    protected session: Session;
-    constructor(socket: WebSocket, session: Session);
+    protected session: SocketSession;
+    constructor(socket: WebSocket, session: SocketSession);
     protected sendJSON(data: object): void;
-    protected sendText(data: string): void;
+    protected sendText(data: number | string): void;
     abstract onOpen(): void;
     abstract onMessage(message: string): void;
     abstract onClose(code: number, reason: string): void;

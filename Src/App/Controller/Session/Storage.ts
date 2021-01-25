@@ -79,4 +79,24 @@ export default class Storage {
 
     }
 
+    public static getForSocket(sessionToken : string) : CookieStructure {
+
+        if (Storage.instance === undefined) {
+
+            Storage.instance = new Storage();
+
+        }
+
+        if (Storage.instance.has(sessionToken)) {
+
+            const result = Storage.instance.get(sessionToken);
+
+            return result;
+
+        }
+
+        return {};
+
+    }
+
 }

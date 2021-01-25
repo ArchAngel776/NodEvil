@@ -37,5 +37,15 @@ class Storage {
         Storage.instance.set(sessionToken, cookie);
         return true;
     }
+    static getForSocket(sessionToken) {
+        if (Storage.instance === undefined) {
+            Storage.instance = new Storage();
+        }
+        if (Storage.instance.has(sessionToken)) {
+            const result = Storage.instance.get(sessionToken);
+            return result;
+        }
+        return {};
+    }
 }
 exports.default = Storage;

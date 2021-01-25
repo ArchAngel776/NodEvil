@@ -10,5 +10,6 @@ export default class Storage {
     delete(sessionToken: string): void;
     static get(sessionToken: string): CookieStructure;
     static set(sessionToken: string, cookie: CookieStructure): boolean;
+    static getForSocket(sessionToken: string): CookieStructure;
 }
 //# sourceMappingURL=Storage.d.ts.map
