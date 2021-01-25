@@ -13,7 +13,8 @@ export default class Http2Core extends Core {
 
         try {
 
-            const routing = new Routing(new Request(HTTP_VERSION.v2_0, request), new Response(HTTP_VERSION.v2_0, response));
+            const routing = new Routing(new Request(HTTP_VERSION.v2_0, request), new Response(HTTP_VERSION.v2_0, response))
+                .withMap(this.router);
 
             await routing.init();
 
@@ -31,13 +32,13 @@ export default class Http2Core extends Core {
 
     protected createSecured(ssl : SslStructure) : http2.Http2SecureServer {
 
-        return http2.createSecureServer({...ssl, allowHTTP1: true}, this.requestHandler);
+        return http2.createSecureServer({...ssl, allowHTTP1: true}, this.requestHandler.bind(this));
 
     }
 
     protected createUnsecured() : http2.Http2Server {
 
-        return http2.createServer(this.requestHandler);
+        return http2.createServer(this.requestHandler.bind(this));
 
     }
 

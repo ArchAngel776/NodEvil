@@ -3,18 +3,15 @@ import ChannelElement from "../Data/Structures/ChannelElement";
 import ChannelsStack from "../Data/Structures/ChannelsStack";
 import RouterElement from "../Data/Structures/RouterElement";
 import RouterStack from "../Data/Structures/RouterStack";
+import { ChannelInstance } from "../Data/Types/ChannelInstance";
 import { ControllerInstance } from "../Data/Types/ControllerInstance";
 import { HttpMethod } from "../Data/Types/HttpMethod";
-import Channel from "./Channel";
-import Controller from "./Controller";
 import ElementOfRouter from "./Router/ElementOfRouter";
 import ChannelElementNotFound from "./Router/Exception/ChannelElementNotFound";
 import RouterElementNotFound from "./Router/Exception/RouterElementNotFound";
 import RouterChannel from "./Router/RouterChannel";
 
 export default class Router {
-
-    protected static instance : Router;
 
     protected stack : RouterStack;
 
@@ -28,19 +25,33 @@ export default class Router {
 
     }
 
-    public get(path : string, controller : ControllerInstance, action : string) : void {
+    public get(path : string, controller : ControllerInstance, action : string) : Router {
 
         const element = new ElementOfRouter(path, HTTP_METHOD.Get, controller, action);
 
         this.stack.push(element);
 
+        return this;
+
     }
 
-    public post(path : string, controller : ControllerInstance, action : string) : void {
+    public post(path : string, controller : ControllerInstance, action : string) : Router {
 
         const element = new ElementOfRouter(path, HTTP_METHOD.Post, controller, action);
 
         this.stack.push(element);
+
+        return this;
+
+    }
+
+    public channel(path : string, channel : ChannelInstance) : Router {
+
+        const element = new RouterChannel(path, channel);
+
+        this.channelsStack.push(element);
+
+        return this;
 
     }
 
@@ -60,14 +71,6 @@ export default class Router {
 
     }
 
-    public channel(path : string, channel : { new() : Channel }) : void {
-
-        const element = new RouterChannel(path, channel);
-
-        this.channelsStack.push(element);
-
-    }
-
     public readChannel(path : string) : ChannelElement | never {
 
         for (const channelElement of this.channelsStack) {
@@ -81,18 +84,6 @@ export default class Router {
         }
 
         throw new ChannelElementNotFound(path);
-
-    }
-
-    public static getInstance() : Router {
-
-        if (Router.instance === undefined) {
-
-            Router.instance = new Router();
-
-        }
-
-        return Router.instance;
 
     }
 

@@ -9,7 +9,7 @@ import Client_1 from "./App/Client";
 import Validator_1 from "./App/Validator";
 
 export const Server = Server_1;
-export const Router = Router_1.getInstance();
+export const Router = Router_1;
 export const Controller = Controller_1;
 export const Model = Model_1;
 export const View = View_1;

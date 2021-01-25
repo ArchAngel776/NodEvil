@@ -9,7 +9,7 @@ class PortValidation extends ServerValidation_1.default {
         if (this.config.port === undefined) {
             throw new ServerPortRequired_1.default();
         }
-        else if (typeof this.config.port !== "number" || parseInt(this.config.port.toString()) === NaN) {
+        else if (typeof this.config.port !== "number" && !/^[0-9]+$/gm.test(this.config.port)) {
             throw new ServerPortNumerable_1.default(this.config.port);
         }
         else if (this.config.port > 65535 || this.config.port < 1) {

@@ -13,10 +13,17 @@ class Router {
     get(path, controller, action) {
         const element = new ElementOfRouter_1.default(path, HttpMethod_1.HTTP_METHOD.Get, controller, action);
         this.stack.push(element);
+        return this;
     }
     post(path, controller, action) {
         const element = new ElementOfRouter_1.default(path, HttpMethod_1.HTTP_METHOD.Post, controller, action);
         this.stack.push(element);
+        return this;
+    }
+    channel(path, channel) {
+        const element = new RouterChannel_1.default(path, channel);
+        this.channelsStack.push(element);
+        return this;
     }
     read(path, method) {
         for (const routerElement of this.stack) {
@@ -26,10 +33,6 @@ class Router {
         }
         throw new RouterElementNotFound_1.default(path, method);
     }
-    channel(path, channel) {
-        const element = new RouterChannel_1.default(path, channel);
-        this.channelsStack.push(element);
-    }
     readChannel(path) {
         for (const channelElement of this.channelsStack) {
             if (channelElement.getStructure().path === path) {
@@ -37,12 +40,6 @@ class Router {
             }
         }
         throw new ChannelElementNotFound_1.default(path);
-    }
-    static getInstance() {
-        if (Router.instance === undefined) {
-            Router.instance = new Router();
-        }
-        return Router.instance;
     }
 }
 exports.default = Router;

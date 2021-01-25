@@ -2,7 +2,6 @@ import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 import DatabaseProvider from "../DatabaseProvider";
 import SelectSqlBuilder from "../SqlBuilder/SelectSqlBuilder";
 import * as MySql from "mysql";
-import DatabaseConfig from "../../../Data/Structures/DatabaseConfig";
 import TableData from "../../../Data/Structures/TableData";
 import { SqlBuilderInstance } from "../../../Data/Types/SqlBuilderInstance";
 import InsertSqlBuilder from "../SqlBuilder/InsertSqlBuilder";
@@ -11,17 +10,23 @@ import DeleteSqlBuilder from "../SqlBuilder/DeleteSqlBuilder";
 
 export default class MysqlDatabaseProvider extends DatabaseProvider {
 
+    protected getConfig() : MySql.ConnectionConfig {
+
+        return {
+            host: this.config.host,
+            port: this.config.port,
+            user: this.config.username,
+            password: this.config.password,
+            database: this.config.dbname
+        }
+
+    }
+
     protected operation(SqlBuilder : SqlBuilderInstance) : Promise<any | never> {
 
         return new Promise(resolve => {
 
-            const connection = MySql.createConnection({
-                host: this.config.host,
-                port: this.config.port,
-                user: this.config.username,
-                password: this.config.password,
-                database: this.config.dbname
-            });
+            const connection = MySql.createConnection(this.getConfig());
 
             connection.connect((error : MySql.MysqlError) => {
 

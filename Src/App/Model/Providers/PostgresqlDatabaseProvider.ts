@@ -1,7 +1,6 @@
 import DatabaseProvider from "../DatabaseProvider";
 import SelectSqlBuilder from "../SqlBuilder/SelectSqlBuilder";
 import * as PostgreSql from "pg";
-import DatabaseConfig from "../../../Data/Structures/DatabaseConfig";
 import InsertSqlBuilder from "../SqlBuilder/InsertSqlBuilder";
 import UpdateSqlBuilder from "../SqlBuilder/UpdateSqlBuilder";
 import DeleteSqlBuilder from "../SqlBuilder/DeleteSqlBuilder";
@@ -11,15 +10,21 @@ import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 
 export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
-    protected async operation(SqlBuilder : SqlBuilderInstance) : Promise<PostgreSql.QueryResult | never> {
+    protected getConfig() : PostgreSql.ClientConfig {
 
-        const client = new PostgreSql.Client({
+        return {
             host: this.config.host,
             port: this.config.port,
             user: this.config.username,
             password: this.config.password,
             database: this.config.dbname
-        });
+        }
+
+    }
+
+    protected async operation(SqlBuilder : SqlBuilderInstance) : Promise<PostgreSql.QueryResult | never> {
+
+        const client = new PostgreSql.Client(this.getConfig());
 
         await client.connect();
 

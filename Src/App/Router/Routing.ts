@@ -16,11 +16,23 @@ export default class Routing implements Init {
 
     protected response : Response;
 
+    protected router : Router;
+
     public constructor(request : Request, response : Response) {
 
         this.request = request;
 
         this.response = response;
+
+        this.router = new Router();
+
+    }
+
+    public withMap(map : Router) : Routing {
+
+        this.router = map;
+
+        return this;
 
     }
 
@@ -50,7 +62,7 @@ export default class Routing implements Init {
 
         try {
 
-            const routerElemet = Router.getInstance().read(this.request.getUrl(), this.request.getType());
+            const routerElemet = this.router.read(this.request.getUrl(), this.request.getType());
 
             const Controller = routerElemet.controller;
 
@@ -62,7 +74,7 @@ export default class Routing implements Init {
 
             }
 
-            const viewResponse = await (<ControllerAction>Controller.prototype[routerElemet.action]).call(controllerInstance, await this.request.getParams());
+            const viewResponse = await (<ControllerAction> Controller.prototype[routerElemet.action]).call(controllerInstance, await this.request.getParams());
 
             this.response.sendView(viewResponse);
 

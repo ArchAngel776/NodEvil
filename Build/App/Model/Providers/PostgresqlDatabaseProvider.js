@@ -16,15 +16,18 @@ const InsertSqlBuilder_1 = require("../SqlBuilder/InsertSqlBuilder");
 const UpdateSqlBuilder_1 = require("../SqlBuilder/UpdateSqlBuilder");
 const DeleteSqlBuilder_1 = require("../SqlBuilder/DeleteSqlBuilder");
 class PostgresqlDatabaseProvider extends DatabaseProvider_1.default {
+    getConfig() {
+        return {
+            host: this.config.host,
+            port: this.config.port,
+            user: this.config.username,
+            password: this.config.password,
+            database: this.config.dbname
+        };
+    }
     operation(SqlBuilder) {
         return __awaiter(this, void 0, void 0, function* () {
-            const client = new PostgreSql.Client({
-                host: this.config.host,
-                port: this.config.port,
-                user: this.config.username,
-                password: this.config.password,
-                database: this.config.dbname
-            });
+            const client = new PostgreSql.Client(this.getConfig());
             yield client.connect();
             const result = yield client.query(new SqlBuilder(this.queryBuilderSchema).build());
             yield client.end();

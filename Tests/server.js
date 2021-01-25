@@ -1,4 +1,4 @@
-require("./router");
+const Router = require("./router");
 const Server = require("../Build/index").Server;
 
 const server = new Server({
@@ -6,7 +6,8 @@ const server = new Server({
     httpVersion: "2.0",
     ssl: {
         privateKey: "./Tests/Ssl/priv.key",
-        certificate: "./Tests/Ssl/cert.pem"
+        certificate: "./Tests/Ssl/cert.pem",
+        chain: "./Tests/Ssl/ca.pem"
     },
     database: {
         engine: "postgre",
@@ -16,6 +17,6 @@ const server = new Server({
         username: "postgres",
         password: "72assaw123"
     }
-});
+}).withRouter(Router);
 
 server.init();

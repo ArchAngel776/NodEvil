@@ -8,11 +8,16 @@ class SocketRouter {
     constructor(socket, request) {
         this.socket = socket;
         this.request = request;
+        this.router = new Router_1.default();
     }
     init() {
-        const channelElement = Router_1.default.getInstance().readChannel(this.request.getUrl());
+        const channelElement = this.router.readChannel(this.request.getUrl());
         const client = new SocketClient_1.default(this.socket, channelElement.channel, new Session_1.default(this.request.getHeaders().cookie || String_1.STRING.EMPTY));
         client.init();
+    }
+    withMap(map) {
+        this.router = map;
+        return this;
     }
 }
 exports.default = SocketRouter;

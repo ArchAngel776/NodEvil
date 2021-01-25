@@ -8,7 +8,7 @@ import Channel_1 from "./App/Channel";
 import Client_1 from "./App/Client";
 import Validator_1 from "./App/Validator";
 export declare const Server: typeof Server_1;
-export declare const Router: Router_1;
+export declare const Router: typeof Router_1;
 export declare const Controller: typeof Controller_1;
 export declare const Model: typeof Model_1;
 export declare const View: typeof View_1;

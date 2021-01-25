@@ -3,6 +3,7 @@ import SslStructure from "../../../Data/Structures/SslStructure";
 import { HttpPossibleRequest } from "../../../Data/Types/HttpPossibleRequest";
 import { HttpPossibleResponse } from "../../../Data/Types/HttpPossibleResponse";
 import { HttpVersion } from "../../../Data/Types/HttpVersion";
+import Router from "../../Router";
 
 export default abstract class Core {
 
@@ -10,11 +11,15 @@ export default abstract class Core {
 
     protected version : HttpVersion;
 
+    protected router : Router;
+
     public constructor(version : HttpVersion, ssl : SslStructure | undefined = undefined) {
 
         this.core = ssl ? this.createSecured(ssl) : this.createUnsecured();
 
         this.version = version;
+
+        this.router = new Router();
 
     }
 
@@ -23,6 +28,14 @@ export default abstract class Core {
     protected abstract createSecured(ssl : SslStructure) : HttpPossibleCore;
 
     protected abstract createUnsecured() : HttpPossibleCore;
+
+    public routing(router : Router) : Core {
+
+        this.router = router;
+
+        return this;
+
+    }
 
     public listen(port : number) : HttpPossibleCore {
 

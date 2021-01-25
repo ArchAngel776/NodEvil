@@ -1,8 +1,10 @@
 import { readFileSync } from "fs";
 import SslStructure from "../../Data/Structures/SslStructure";
 import SslConfig from "../../Data/Structures/SslConfig";
+import SslWithChain from "./Ssl/SslWithChain";
+import SslBasic from "./Ssl/SslBasic";
 
-export default class SslObject {
+export default class Ssl {
 
     protected sslStructure : SslStructure | undefined;
 
@@ -14,18 +16,11 @@ export default class SslObject {
 
     protected createStructure(sslConfig : SslConfig) : SslStructure {
 
-        let result : SslStructure = {
-            key: readFileSync(sslConfig.privateKey),
-            cert: readFileSync(sslConfig.certificate)
-        };
+        return sslConfig.chain ? 
+        
+            new SslWithChain(sslConfig.privateKey, sslConfig.certificate, sslConfig.chain).getObject() :
 
-        if (sslConfig.chain) {
-
-            result.ca = readFileSync(sslConfig.chain);
-
-        }
-
-        return result;
+            new SslBasic(sslConfig.privateKey, sslConfig.certificate).getObject()
 
     }
 

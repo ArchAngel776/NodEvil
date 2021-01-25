@@ -6,14 +6,16 @@ class SslObject {
         this.sslStructure = sslConfig ? this.createStructure(sslConfig) : undefined;
     }
     createStructure(sslConfig) {
-        let result = {
-            key: fs_1.readFileSync(sslConfig.privateKey),
-            cert: fs_1.readFileSync(sslConfig.certificate)
-        };
-        if (sslConfig.chain) {
-            result.ca = fs_1.readFileSync(sslConfig.chain);
-        }
-        return result;
+        return sslConfig.chain ?
+            {
+                key: fs_1.readFileSync(sslConfig.privateKey),
+                cert: fs_1.readFileSync(sslConfig.certificate),
+                ca: fs_1.readFileSync(sslConfig.chain)
+            } :
+            {
+                key: fs_1.readFileSync(sslConfig.privateKey),
+                cert: fs_1.readFileSync(sslConfig.certificate)
+            };
     }
     flush() {
         return this.sslStructure;

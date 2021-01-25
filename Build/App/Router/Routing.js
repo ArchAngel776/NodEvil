@@ -20,6 +20,11 @@ class Routing {
     constructor(request, response) {
         this.request = request;
         this.response = response;
+        this.router = new Router_1.default();
+    }
+    withMap(map) {
+        this.router = map;
+        return this;
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,7 +42,7 @@ class Routing {
     findView() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const routerElemet = Router_1.default.getInstance().read(this.request.getUrl(), this.request.getType());
+                const routerElemet = this.router.read(this.request.getUrl(), this.request.getType());
                 const Controller = routerElemet.controller;
                 const controllerInstance = new Controller(new Session_1.default(this.request.getHeaders().cookie || String_1.STRING.EMPTY));
                 if (!(routerElemet.action in controllerInstance && typeof Controller.prototype[routerElemet.action] === "function")) {

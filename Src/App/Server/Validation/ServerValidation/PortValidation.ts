@@ -13,7 +13,7 @@ export default class PortValidation extends ServerValidation {
 
         }
 
-        else if (typeof this.config.port !== "number" || parseInt(this.config.port.toString()) === NaN) {
+        else if (typeof this.config.port !== "number" && !/^[0-9]+$/gm.test(this.config.port)) {
 
             throw new ServerPortNumerable(this.config.port);
 

@@ -14,7 +14,8 @@ export default class HttpCore extends Core {
 
         try {
 
-            const routing = new Routing(new Request(HTTP_VERSION.v1_1, request), new Response(HTTP_VERSION.v1_1, response));
+            const routing = new Routing(new Request(HTTP_VERSION.v1_1, request), new Response(HTTP_VERSION.v1_1, response))
+                .withMap(this.router);
 
             await routing.init();
 
@@ -32,13 +33,13 @@ export default class HttpCore extends Core {
 
     protected createSecured(ssl : SslStructure) : https.Server {
 
-        return https.createServer(ssl, this.requestHandler);
+        return https.createServer(ssl, this.requestHandler.bind(this));
 
     }
 
     protected createUnsecured() : http.Server {
 
-        return http.createServer(this.requestHandler);
+        return http.createServer(this.requestHandler.bind(this));
 
     }
 

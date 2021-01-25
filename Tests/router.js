@@ -1,17 +1,21 @@
 const Router = require("../Build/index").Router;
+const LoginController = require("./Controllers/LoginController");
 const HomeController = require("./Controllers/HomeController");
-const UserChannel = require("./Channels/UserChannel");
 
-Router.get("/", HomeController, "index");
+module.exports = new Router()
 
-Router.get("/login", HomeController, "login");
+//Login
 
-Router.get("/home", HomeController, "home");
+.get("/login", LoginController, "index")
 
-Router.post("/login", HomeController, "auth");
+.post("/login", LoginController, "login")
 
-Router.post("/logout", HomeController, "logout");
+.post("/logout", LoginController, "logout")
 
-Router.get("/favicon.ico", HomeController, "favicon");
+//Home
 
-Router.channel("/", UserChannel);
+.get("/", HomeController, "index")
+
+.get("/home", HomeController, "index")
+
+.get("/favicon.ico", HomeController, "favicon")

@@ -20,7 +20,8 @@ class Http2Core extends Core_1.default {
     requestHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const routing = new Routing_1.default(new Request_1.default(HttpVersion_1.HTTP_VERSION.v2_0, request), new Response_1.default(HttpVersion_1.HTTP_VERSION.v2_0, response));
+                const routing = new Routing_1.default(new Request_1.default(HttpVersion_1.HTTP_VERSION.v2_0, request), new Response_1.default(HttpVersion_1.HTTP_VERSION.v2_0, response))
+                    .withMap(this.router);
                 yield routing.init();
             }
             catch (errorInstance) {
@@ -30,10 +31,10 @@ class Http2Core extends Core_1.default {
         });
     }
     createSecured(ssl) {
-        return http2.createSecureServer(Object.assign(Object.assign({}, ssl), { allowHTTP1: true }), this.requestHandler);
+        return http2.createSecureServer(Object.assign(Object.assign({}, ssl), { allowHTTP1: true }), this.requestHandler.bind(this));
     }
     createUnsecured() {
-        return http2.createServer(this.requestHandler);
+        return http2.createServer(this.requestHandler.bind(this));
     }
 }
 exports.default = Http2Core;

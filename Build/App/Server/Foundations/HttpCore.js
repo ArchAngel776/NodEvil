@@ -21,7 +21,8 @@ class HttpCore extends Core_1.default {
     requestHandler(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const routing = new Routing_1.default(new Request_1.default(HttpVersion_1.HTTP_VERSION.v1_1, request), new Response_1.default(HttpVersion_1.HTTP_VERSION.v1_1, response));
+                const routing = new Routing_1.default(new Request_1.default(HttpVersion_1.HTTP_VERSION.v1_1, request), new Response_1.default(HttpVersion_1.HTTP_VERSION.v1_1, response))
+                    .withMap(this.router);
                 yield routing.init();
             }
             catch (errorInstance) {
@@ -31,10 +32,10 @@ class HttpCore extends Core_1.default {
         });
     }
     createSecured(ssl) {
-        return https.createServer(ssl, this.requestHandler);
+        return https.createServer(ssl, this.requestHandler.bind(this));
     }
     createUnsecured() {
-        return http.createServer(this.requestHandler);
+        return http.createServer(this.requestHandler.bind(this));
     }
 }
 exports.default = HttpCore;
