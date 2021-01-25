@@ -7,5 +7,6 @@ export default class Session {
     set(key: string, value: string): void;
     delete(key: string): void;
     flush(): CookieStructure;
+    save(): string;
 }
 //# sourceMappingURL=Session.d.ts.map

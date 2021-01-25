@@ -16,13 +16,7 @@ export default abstract class ViewType {
 
     protected withSession(viewResponse : ViewResponse) : ViewResponse {
 
-        const sessionToken = new Generator(48).generate();
-
-        let save = false;
-
-        while (!save) save = Storage.set(sessionToken, this.session.flush());
-
-        viewResponse.headers["Set-cookie"] = new Cookie("session").Set(sessionToken).SameSite("Lax").HttpOnly().Secure().Extract();
+        viewResponse.headers["Set-cookie"] = this.session.save();
 
         return viewResponse;
 
