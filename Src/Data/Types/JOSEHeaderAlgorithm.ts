@@ -1,0 +1,1 @@
+export type JOSEHeaderAlgorithm = "HS256";

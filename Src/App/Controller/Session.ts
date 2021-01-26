@@ -1,8 +1,7 @@
 import * as Cookies from "cookie";
 import CookieStructure from "../../Data/Structures/CookieStructure";
 import Cookie from "./Session/Cookie";
-import Generator from "./Session/Generator";
-import Storage from "./Session/Storage";
+import * as crypto from "crypto";
 
 export default class Session {
 
@@ -10,7 +9,9 @@ export default class Session {
 
     public constructor(cookies : string) {
 
-        this.cookies = Storage.get(Cookies.parse(cookies).session || "");
+        this.cookies = {};
+
+        Cookies.parse(cookies).session || "";
 
     }
 
@@ -41,18 +42,6 @@ export default class Session {
     public flush() : CookieStructure {
 
         return this.cookies;
-
-    }
-
-    public save() : string {
-
-        let sessionToken = new Generator(48).generate();
-
-        while (!Storage.set(sessionToken, this.flush())) sessionToken = new Generator(48).generate();
-
-        const result = new Cookie("session").Set(sessionToken).SameSite("Lax").HttpOnly().Secure().Extract()
-
-        return result;
 
     }
 
