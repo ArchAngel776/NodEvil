@@ -4,7 +4,7 @@ import JOSEHeader from "./JsonWebToken/JOSEHeader";
 import JWSPayload from "./JsonWebToken/JWSPayload";
 import JWTSignature from "./JsonWebToken/JWTSignature";
 
-export default class JsonWebToken {
+export default class JsonWebTokenDecoder {
 
     protected token : string;
 
@@ -36,9 +36,9 @@ export default class JsonWebToken {
 
         }
 
-        this.joseHeader.load(parts[0]);
+        this.joseHeader.loadHash(parts[0]);
 
-        this.jwsPayload.load(parts[1]);
+        this.jwsPayload.loadHash(parts[1]);
 
         this.jwtSignature.load(parts[2]);
 

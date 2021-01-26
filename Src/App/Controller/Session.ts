@@ -1,7 +1,7 @@
 import * as Cookies from "cookie";
 import CookieStructure from "../../Data/Structures/CookieStructure";
-import Cookie from "./Session/Cookie";
-import * as crypto from "crypto";
+import JsonWebTokenDecoder from "./Session/JsonWebTokenDecoder";
+import JsonWebTokenEncoder from "./Session/JsonWebTokenEncoder";
 
 export default class Session {
 
@@ -9,9 +9,7 @@ export default class Session {
 
     public constructor(cookies : string) {
 
-        this.cookies = {};
-
-        Cookies.parse(cookies).session || "";
+        this.cookies = new JsonWebTokenDecoder(Cookies.parse(cookies).session || "").extractData();
 
     }
 
@@ -39,9 +37,9 @@ export default class Session {
 
     }
 
-    public flush() : CookieStructure {
+    public flushToken() : string {
 
-        return this.cookies;
+        return new JsonWebTokenEncoder({ typ: "JWT", alg: "HS256" }).getToken(this.cookies);
 
     }
 

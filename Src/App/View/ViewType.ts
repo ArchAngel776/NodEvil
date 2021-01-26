@@ -1,8 +1,6 @@
 import ViewResponse from "../../Data/Structures/ViewResponse";
 import Session from "../Controller/Session";
 import Cookie from "../Controller/Session/Cookie";
-import Generator from "../Controller/Session/Generator";
-import Storage from "../Controller/Session/Storage";
 
 export default abstract class ViewType {
 
@@ -16,7 +14,13 @@ export default abstract class ViewType {
 
     protected withSession(viewResponse : ViewResponse) : ViewResponse {
 
-        viewResponse.headers["Set-cookie"] = this.session.save();
+        viewResponse.headers["Set-cookie"] = new Cookie("session")
+            .Set(this.session.flushToken())
+            .Origin("/")
+            .SameSite("Lax")
+            .HttpOnly()
+            .Secure()
+            .Extract();
 
         return viewResponse;
 

@@ -29,9 +29,17 @@ export default class JWTSignature {
 
         const jwsPayloadBase64 = base64url(jwsPayloadString);
 
-        const signature = crypto.createHmac("sha256", "abc").update(joseHeaderBase64 + "." + jwsPayloadBase64).digest("hex");
+        const signature = this.createSignature(joseHeaderBase64, jwsPayloadBase64);
 
         return signature === this.signature;
+
+    }
+
+    public createSignature(joseHeaderHash : string, jwsPayloadHash : string) : string {
+
+        const signature = crypto.createHmac("sha256", "abc").update(joseHeaderHash + "." + jwsPayloadHash).digest("hex");
+
+        return signature;
 
     }
 

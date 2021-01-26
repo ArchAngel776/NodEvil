@@ -1,0 +1,1 @@
+{"version":3,"file":"JOSEHeaderStructure.d.ts","sourceRoot":"","sources":["../../../Src/Data/Structures/JOSEHeaderStructure.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,mBAAmB,EAAE,MAAM,8BAA8B,CAAC;AACnE,OAAO,EAAE,cAAc,EAAE,MAAM,yBAAyB,CAAC;AAEzD,MAAM,CAAC,OAAO,WAAW,mBAAmB;IACxC,GAAG,EAAG,cAAc,CAAC;IACrB,GAAG,EAAG,mBAAmB,CAAC;CAC7B"}

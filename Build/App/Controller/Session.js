@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Cookies = require("cookie");
-const Cookie_1 = require("./Session/Cookie");
-const Generator_1 = require("./Session/Generator");
-const Storage_1 = require("./Session/Storage");
+const JsonWebTokenDecoder_1 = require("./Session/JsonWebTokenDecoder");
+const JsonWebTokenEncoder_1 = require("./Session/JsonWebTokenEncoder");
 class Session {
     constructor(cookies) {
-        this.cookies = Storage_1.default.get(Cookies.parse(cookies).session || "");
+        this.cookies = new JsonWebTokenDecoder_1.default(Cookies.parse(cookies).session || "").extractData();
     }
     has(key) {
         return this.cookies[key] !== undefined;
@@ -20,15 +19,8 @@ class Session {
     delete(key) {
         delete this.cookies[key];
     }
-    flush() {
-        return this.cookies;
-    }
-    save() {
-        let sessionToken = new Generator_1.default(48).generate();
-        while (!Storage_1.default.set(sessionToken, this.flush()))
-            sessionToken = new Generator_1.default(48).generate();
-        const result = new Cookie_1.default("session").Set(sessionToken).SameSite("Lax").HttpOnly().Secure().Extract();
-        return result;
+    flushToken() {
+        return new JsonWebTokenEncoder_1.default({ typ: "JWT", alg: "HS256" }).getToken(this.cookies);
     }
 }
 exports.default = Session;

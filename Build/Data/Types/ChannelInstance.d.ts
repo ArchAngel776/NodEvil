@@ -1,7 +1,7 @@
 import Channel from "../../App/Channel";
 import * as WebSocket from "ws";
-import SocketSession from "../../App/Channel/SocketSession";
+import Session from "../../App/Controller/Session";
 export declare type ChannelInstance = {
-    new (socket: WebSocket, session: SocketSession): Channel;
+    new (socket: WebSocket, session: Session): Channel;
 };
 //# sourceMappingURL=ChannelInstance.d.ts.map

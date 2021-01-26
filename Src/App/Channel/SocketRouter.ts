@@ -1,10 +1,10 @@
 import * as WebSocket from "ws";
 import Init from "../../Data/Interfaces/Init";
 import { STRING } from "../../Data/Statics/String";
+import Session from "../Controller/Session";
 import Router from "../Router";
 import Request from "../Server/Stream/Request";
 import SocketClient from "./SocketClient";
-import SocketSession from "./SocketSession";
 
 export default class SocketRouter implements Init {
 
@@ -28,7 +28,7 @@ export default class SocketRouter implements Init {
 
         const channelElement = this.router.readChannel(this.request.getUrl());
 
-        const client = new SocketClient(this.socket, channelElement.channel, new SocketSession(this.request.getHeaders().cookie || STRING.EMPTY));
+        const client = new SocketClient(this.socket, channelElement.channel, new Session(this.request.getHeaders().cookie || STRING.EMPTY));
 
         client.init();
 
