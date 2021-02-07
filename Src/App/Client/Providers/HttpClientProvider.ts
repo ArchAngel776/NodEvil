@@ -25,11 +25,7 @@ export default class HttpClientProvider extends ClientProvider {
 
                 req.on("data", chunk => dataString += chunk);
 
-                req.on("end", () => {
-
-                    resolve(dataString);
-
-                });
+                req.on("end", () => resolve(dataString));
 
             });
 
@@ -54,11 +50,7 @@ export default class HttpClientProvider extends ClientProvider {
 
                 req.on("data", chunk => dataString += chunk);
 
-                req.on("end", () => {
-
-                    resolve(dataString);
-
-                });
+                req.on("end", () => resolve(dataString));
 
             });
 

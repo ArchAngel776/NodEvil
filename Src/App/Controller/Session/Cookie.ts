@@ -9,6 +9,8 @@ export default class Cookie {
 
     protected path : string;
 
+    protected expires : string;
+
     protected sameSite : CookieSameSite;
 
     protected httpOnly : boolean;
@@ -22,6 +24,8 @@ export default class Cookie {
         this.value = STRING.EMPTY;
 
         this.path = "/";
+
+        this.expires = STRING.EMPTY;
 
         this.sameSite = "None";
 
@@ -39,7 +43,15 @@ export default class Cookie {
 
     }
 
-    public Origin(path : string) : Cookie {
+    public Expires(date : Date) : Cookie {
+
+        this.expires = "Expires=" + date.toUTCString() + "; ";
+
+        return this;
+
+    }
+
+    public Path(path : string) : Cookie {
 
         this.path = path;
 
@@ -73,7 +85,7 @@ export default class Cookie {
 
     public Extract() : string {
 
-        const result = `${this.name}=${this.value}; Path=${this.path}; SameSite=${this.sameSite}; ${this.httpOnly ? "HttpOnly; " : STRING.EMPTY}${this.secure ? "Secure; " : STRING.EMPTY}`;
+        const result = `${this.name}=${this.value}; ${this.expires}Path=${this.path}; SameSite=${this.sameSite}; ${this.httpOnly ? "HttpOnly; " : STRING.EMPTY}${this.secure ? "Secure; " : STRING.EMPTY}`;
 
         return result;
 

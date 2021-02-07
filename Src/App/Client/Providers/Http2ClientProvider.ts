@@ -27,11 +27,7 @@ export default class Http2ClientProvider extends ClientProvider {
 
             let data = "";
 
-            req.on("data", (chunk) => {
-                
-                data += chunk;
-            
-            });
+            req.on("data", chunk => data += chunk);
 
             req.on("end", () => {
 
@@ -67,11 +63,7 @@ export default class Http2ClientProvider extends ClientProvider {
 
             let data = "";
 
-            req.on("data", (chunk) => {
-                
-                data += chunk;
-            
-            });
+            req.on("data", chunk => data += chunk);
 
             req.on("end", () => {
 

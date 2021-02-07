@@ -16,7 +16,7 @@ export default abstract class ViewType {
 
         viewResponse.headers["Set-cookie"] = new Cookie("session")
             .Set(this.session.flushToken())
-            .Origin("/")
+            .Path("/")
             .SameSite("Lax")
             .HttpOnly()
             .Secure()
