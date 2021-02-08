@@ -6,6 +6,7 @@ class Cookie {
         this.name = name;
         this.value = String_1.STRING.EMPTY;
         this.path = "/";
+        this.expires = String_1.STRING.EMPTY;
         this.sameSite = "None";
         this.httpOnly = false;
         this.secure = false;
@@ -14,7 +15,11 @@ class Cookie {
         this.value = value;
         return this;
     }
-    Origin(path) {
+    Expires(date) {
+        this.expires = "Expires=" + date.toUTCString() + "; ";
+        return this;
+    }
+    Path(path) {
         this.path = path;
         return this;
     }
@@ -31,7 +36,7 @@ class Cookie {
         return this;
     }
     Extract() {
-        const result = `${this.name}=${this.value}; Path=${this.path}; SameSite=${this.sameSite}; ${this.httpOnly ? "HttpOnly; " : String_1.STRING.EMPTY}${this.secure ? "Secure; " : String_1.STRING.EMPTY}`;
+        const result = `${this.name}=${this.value}; ${this.expires}Path=${this.path}; SameSite=${this.sameSite}; ${this.httpOnly ? "HttpOnly; " : String_1.STRING.EMPTY}${this.secure ? "Secure; " : String_1.STRING.EMPTY}`;
         return result;
     }
 }

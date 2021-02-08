@@ -26,9 +26,7 @@ class HttpClientProvider extends ClientProvider_1.default {
                 const httpRequest = https.request(url.full(), options, (req) => {
                     let dataString = "";
                     req.on("data", chunk => dataString += chunk);
-                    req.on("end", () => {
-                        resolve(dataString);
-                    });
+                    req.on("end", () => resolve(dataString));
                 });
                 httpRequest.end();
             });
@@ -44,9 +42,7 @@ class HttpClientProvider extends ClientProvider_1.default {
                 const httpRequest = https.request(this.url, options, (req) => {
                     let dataString = "";
                     req.on("data", chunk => dataString += chunk);
-                    req.on("end", () => {
-                        resolve(dataString);
-                    });
+                    req.on("end", () => resolve(dataString));
                 });
                 httpRequest.write(this.body);
                 httpRequest.end();

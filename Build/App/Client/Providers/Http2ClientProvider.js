@@ -24,9 +24,7 @@ class Http2ClientProvider extends ClientProvider_1.default {
                 const req = client.request(headers);
                 req.setEncoding("utf-8");
                 let data = "";
-                req.on("data", (chunk) => {
-                    data += chunk;
-                });
+                req.on("data", chunk => data += chunk);
                 req.on("end", () => {
                     client.close();
                     resolve(data);
@@ -44,9 +42,7 @@ class Http2ClientProvider extends ClientProvider_1.default {
                 const req = client.request(headers);
                 req.setEncoding("utf-8");
                 let data = "";
-                req.on("data", (chunk) => {
-                    data += chunk;
-                });
+                req.on("data", chunk => data += chunk);
                 req.on("end", () => {
                     client.close();
                     resolve(data);

@@ -8,7 +8,7 @@ class ViewType {
     withSession(viewResponse) {
         viewResponse.headers["Set-cookie"] = new Cookie_1.default("session")
             .Set(this.session.flushToken())
-            .Origin("/")
+            .Path("/")
             .SameSite("Lax")
             .HttpOnly()
             .Secure()
