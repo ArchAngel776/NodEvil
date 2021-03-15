@@ -295,12 +295,12 @@ export default class UserChannel extends Channel {
 ```javascript
 
 const response = await new Client("2.0")
-    .Url("https://example.com/data")
-    .Headers({
+    .url("https://example.com/data")
+    .headers({
         "Accpet": "application/json",
         "Content-type": "application/json"
     })
-    .Body({
+    .body({
         foo: "bar"
     })
     .post();
