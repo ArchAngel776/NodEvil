@@ -18,4 +18,8 @@ This project contain some modules which enable server app creation. Those are:
 
 ### Server
 
-Basic class - create server instance, contain information as: Http version, port number, SSL paths, Database configuration. Is responsible for server core work.
+Basic class - create server instance, contain informations as: Http version, port number, SSL paths, Database configuration. Is responsible for server core work.
+
+### Router
+
+Define URLs map - instance of all trace of your server. Contain informations about GET and POST requests. Is responsible for directing client to right controllers and actions
