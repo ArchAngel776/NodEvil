@@ -14,3 +14,4 @@ class RouterChannel {
     }
 }
 exports.default = RouterChannel;
+//# sourceMappingURL=RouterChannel.js.map

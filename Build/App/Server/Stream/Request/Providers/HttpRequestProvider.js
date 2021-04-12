@@ -52,3 +52,4 @@ class HttpRequestProvider extends RequestProvider_1.default {
     }
 }
 exports.default = HttpRequestProvider;
+//# sourceMappingURL=HttpRequestProvider.js.map

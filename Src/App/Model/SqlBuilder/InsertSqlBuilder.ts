@@ -1,3 +1,4 @@
+import DBValue from "../DBValue";
 import SqlBuilder from "../SqlBuilder";
 
 export default class InsertSqlBuilder extends SqlBuilder {
@@ -20,7 +21,7 @@ export default class InsertSqlBuilder extends SqlBuilder {
 
     protected values() : string {
 
-        const result = " VALUES (" + this.schema.main.values.map(value => `'${value}'`).join(", ") + ")";
+        const result = " VALUES (" + this.schema.main.values.map(value => DBValue(value)).join(", ") + ")";
 
         return result;
 

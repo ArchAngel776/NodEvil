@@ -1,3 +1,4 @@
+import DBValue from "../DBValue";
 import SqlBuilder from "../SqlBuilder";
 
 export default class UpdateSqlBuilder extends SqlBuilder {
@@ -16,7 +17,7 @@ export default class UpdateSqlBuilder extends SqlBuilder {
 
         for (let i = 0; i < this.schema.main.fields.length; i++) {
 
-            elements.push(`${this.schema.main.fields[i]} = '${this.schema.main.values[i]}'`);
+            elements.push(`${this.schema.main.fields[i]} = ${DBValue(this.schema.main.values[i])}`);
 
         }
 

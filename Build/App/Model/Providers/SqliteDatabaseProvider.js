@@ -12,3 +12,4 @@ class SqliteDatabaseProvider extends DatabaseProvider_1.default {
     }
 }
 exports.default = SqliteDatabaseProvider;
+//# sourceMappingURL=SqliteDatabaseProvider.js.map

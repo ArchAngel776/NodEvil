@@ -1,1 +1,1 @@
-{"version":3,"file":"DatabaseValue.d.ts","sourceRoot":"","sources":["../../../Src/Data/Types/DatabaseValue.ts"],"names":[],"mappings":"AAAA,oBAAY,aAAa,GAAG,MAAM,GAAG,MAAM,GAAG,IAAI,CAAC"}
+{"version":3,"file":"DatabaseValue.d.ts","sourceRoot":"","sources":["../../../Src/Data/Types/DatabaseValue.ts"],"names":[],"mappings":"AAAA,oBAAY,aAAa,GAAG,OAAO,GAAG,MAAM,GAAG,MAAM,GAAG,IAAI,CAAC"}

@@ -13,3 +13,4 @@ class DatabaseProviderUnsupported extends ErrorInstance_1.default {
     }
 }
 exports.default = DatabaseProviderUnsupported;
+//# sourceMappingURL=DatabaseProviderUnsupported.js.map

@@ -15,3 +15,4 @@ exports.MIME_TYPE = {
     VIDEO_MP4: "video/mp4",
     AUDIO_MPEG: "audio/mpeg"
 };
+//# sourceMappingURL=MimeType.js.map

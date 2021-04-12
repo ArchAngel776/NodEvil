@@ -5,3 +5,4 @@ exports.HTTP_VERSION = {
     v1_1: "1.1",
     v2_0: "2.0"
 };
+//# sourceMappingURL=HttpVersion.js.map

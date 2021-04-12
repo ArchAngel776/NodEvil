@@ -36,3 +36,4 @@ class JOSEHeader {
     }
 }
 exports.default = JOSEHeader;
+//# sourceMappingURL=JOSEHeader.js.map

@@ -8,3 +8,4 @@ class RouterElementNotFound extends Error {
     }
 }
 exports.default = RouterElementNotFound;
+//# sourceMappingURL=RouterElementNotFound.js.map

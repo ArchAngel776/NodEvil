@@ -24,3 +24,4 @@ class Session {
     }
 }
 exports.default = Session;
+//# sourceMappingURL=Session.js.map

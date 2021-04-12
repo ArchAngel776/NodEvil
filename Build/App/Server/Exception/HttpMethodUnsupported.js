@@ -8,3 +8,4 @@ class HttpMethodUnsupported extends Error {
     }
 }
 exports.default = HttpMethodUnsupported;
+//# sourceMappingURL=HttpMethodUnsupported.js.map

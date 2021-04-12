@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const String_1 = require("../../Data/Statics/String");
+const DBValue_1 = require("./DBValue");
 class SqlBuilder {
     constructor(schema) {
         this.schema = schema;
@@ -10,7 +11,7 @@ class SqlBuilder {
             return String_1.STRING.EMPTY;
         }
         const conditions = this.schema.filter.conditions.map(condition => {
-            return condition.field + " " + condition.operator + " " + ((condition.value === null) ? "NULL" : (typeof condition.value === "string") ? `'${condition.value}'` : condition.value);
+            return condition.field + " " + condition.operator + " " + DBValue_1.default(condition.value);
         });
         const elements = [];
         for (let i = 0; i < conditions.length; i++) {
@@ -24,3 +25,4 @@ class SqlBuilder {
     }
 }
 exports.default = SqlBuilder;
+//# sourceMappingURL=SqlBuilder.js.map

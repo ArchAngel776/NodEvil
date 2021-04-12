@@ -7,3 +7,4 @@ exports.CRUD_OPERATION = {
     UPDATE: "update",
     DELETE: "delete"
 };
+//# sourceMappingURL=CrudOperation.js.map

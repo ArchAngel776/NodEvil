@@ -29,3 +29,4 @@ class SelectSqlBuilder extends SqlBuilder_1.default {
     }
 }
 exports.default = SelectSqlBuilder;
+//# sourceMappingURL=SelectSqlBuilder.js.map

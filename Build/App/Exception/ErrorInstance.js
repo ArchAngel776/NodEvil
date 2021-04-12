@@ -12,3 +12,4 @@ class ErrorInstance extends Error {
     }
 }
 exports.default = ErrorInstance;
+//# sourceMappingURL=ErrorInstance.js.map

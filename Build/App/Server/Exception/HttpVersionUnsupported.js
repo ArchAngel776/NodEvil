@@ -8,3 +8,4 @@ class HttpVersionUnsupported extends Error {
     }
 }
 exports.default = HttpVersionUnsupported;
+//# sourceMappingURL=HttpVersionUnsupported.js.map

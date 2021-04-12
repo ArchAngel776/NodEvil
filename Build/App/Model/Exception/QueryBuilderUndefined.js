@@ -13,3 +13,4 @@ class QueryBuilderUndefined extends ErrorInstance_1.default {
     }
 }
 exports.default = QueryBuilderUndefined;
+//# sourceMappingURL=QueryBuilderUndefined.js.map

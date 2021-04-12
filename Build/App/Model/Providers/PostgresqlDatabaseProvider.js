@@ -60,3 +60,4 @@ class PostgresqlDatabaseProvider extends DatabaseProvider_1.default {
     }
 }
 exports.default = PostgresqlDatabaseProvider;
+//# sourceMappingURL=PostgresqlDatabaseProvider.js.map

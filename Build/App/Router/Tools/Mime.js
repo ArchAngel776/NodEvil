@@ -41,3 +41,4 @@ class Mime {
     }
 }
 exports.default = Mime;
+//# sourceMappingURL=Mime.js.map

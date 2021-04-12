@@ -6,3 +6,4 @@ exports.HTTP_STATUS = {
     REDIRECT: 302,
     NOT_FOUND: 404
 };
+//# sourceMappingURL=HttpStatus.js.map

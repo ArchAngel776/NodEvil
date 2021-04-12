@@ -1,5 +1,6 @@
 import { STRING } from "../../Data/Statics/String";
 import QueryBuilderSchema from "../../Data/Structures/QueryBuilderSchema";
+import DBValue from "./DBValue";
 
 export default abstract class SqlBuilder {
 
@@ -23,7 +24,7 @@ export default abstract class SqlBuilder {
 
         const conditions = this.schema.filter.conditions.map(condition => {
 
-            return condition.field + " " + condition.operator + " " + ((condition.value === null) ? "NULL" : (typeof condition.value === "string") ? `'${condition.value}'` : condition.value);
+            return condition.field + " " + condition.operator + " " + DBValue(condition.value);
 
         });
 

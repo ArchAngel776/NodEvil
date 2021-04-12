@@ -5,3 +5,4 @@ exports.HTTP_METHOD = {
     Get: "GET",
     Post: "POST"
 };
+//# sourceMappingURL=HttpMethod.js.map

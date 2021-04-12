@@ -23,3 +23,4 @@ class JWTSignature {
     }
 }
 exports.default = JWTSignature;
+//# sourceMappingURL=JWTSignature.js.map

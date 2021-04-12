@@ -36,3 +36,4 @@ class DatabaseProvider {
     }
 }
 exports.default = DatabaseProvider;
+//# sourceMappingURL=DatabaseProvider.js.map

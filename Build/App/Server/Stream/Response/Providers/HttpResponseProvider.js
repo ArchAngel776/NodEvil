@@ -27,3 +27,4 @@ class HttpResponseProvider extends ResponseProvider_1.default {
     }
 }
 exports.default = HttpResponseProvider;
+//# sourceMappingURL=HttpResponseProvider.js.map

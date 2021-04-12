@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const DBValue_1 = require("../DBValue");
 const SqlBuilder_1 = require("../SqlBuilder");
 class InsertSqlBuilder extends SqlBuilder_1.default {
     build() {
@@ -11,8 +12,9 @@ class InsertSqlBuilder extends SqlBuilder_1.default {
         return result;
     }
     values() {
-        const result = " VALUES (" + this.schema.main.values.map(value => `'${value}'`).join(", ") + ")";
+        const result = " VALUES (" + this.schema.main.values.map(value => DBValue_1.default(value)).join(", ") + ")";
         return result;
     }
 }
 exports.default = InsertSqlBuilder;
+//# sourceMappingURL=InsertSqlBuilder.js.map

@@ -18,3 +18,4 @@ class View {
     }
 }
 exports.default = View;
+//# sourceMappingURL=View.js.map

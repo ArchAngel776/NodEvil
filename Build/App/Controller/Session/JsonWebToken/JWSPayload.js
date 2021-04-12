@@ -36,3 +36,4 @@ class JWSPayload {
     }
 }
 exports.default = JWSPayload;
+//# sourceMappingURL=JWSPayload.js.map

@@ -23,3 +23,4 @@ class BodyRequest {
     }
 }
 exports.default = BodyRequest;
+//# sourceMappingURL=BodyRequest.js.map

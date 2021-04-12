@@ -20,3 +20,4 @@ class Site extends ViewType_1.default {
     }
 }
 exports.default = Site;
+//# sourceMappingURL=Site.js.map

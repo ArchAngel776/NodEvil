@@ -33,3 +33,4 @@ class QueryBuilder {
     }
 }
 exports.default = QueryBuilder;
+//# sourceMappingURL=QueryBuilder.js.map

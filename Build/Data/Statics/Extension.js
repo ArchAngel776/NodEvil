@@ -14,3 +14,4 @@ exports.EXTENSION = {
     JS: "js",
     JSON: "json"
 };
+//# sourceMappingURL=Extension.js.map

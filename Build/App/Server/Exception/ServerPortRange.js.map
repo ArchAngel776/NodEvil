@@ -1,0 +1,1 @@
+{"version":3,"file":"ServerPortRange.js","sourceRoot":"","sources":["../../../../Src/App/Server/Exception/ServerPortRange.ts"],"names":[],"mappings":";;AAAA,MAAqB,eAAgB,SAAQ,KAAK;IAE9C,YAAmB,IAAa;QAE5B,KAAK,EAAE,CAAC;QAER,IAAI,CAAC,IAAI,GAAG,6BAA6B,CAAC;QAE1C,IAAI,CAAC,OAAO,GAAG,kDAAkD,GAAG,IAAI,GAAG,gBAAgB,CAAC;IAEhG,CAAC;CAEJ;AAZD,kCAYC"}

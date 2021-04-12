@@ -34,3 +34,4 @@ class JsonWebTokenDecoder {
     }
 }
 exports.default = JsonWebTokenDecoder;
+//# sourceMappingURL=JsonWebTokenDecoder.js.map

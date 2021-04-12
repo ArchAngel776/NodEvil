@@ -13,3 +13,4 @@ class Channel {
     }
 }
 exports.default = Channel;
+//# sourceMappingURL=Channel.js.map

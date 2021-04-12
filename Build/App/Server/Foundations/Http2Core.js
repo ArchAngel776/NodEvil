@@ -38,3 +38,4 @@ class Http2Core extends Core_1.default {
     }
 }
 exports.default = Http2Core;
+//# sourceMappingURL=Http2Core.js.map

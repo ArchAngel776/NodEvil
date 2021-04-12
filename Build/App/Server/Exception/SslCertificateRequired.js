@@ -8,3 +8,4 @@ class SslCertificateRequired extends Error {
     }
 }
 exports.default = SslCertificateRequired;
+//# sourceMappingURL=SslCertificateRequired.js.map

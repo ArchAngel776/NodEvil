@@ -18,3 +18,4 @@ class ElementOfRouter {
     }
 }
 exports.default = ElementOfRouter;
+//# sourceMappingURL=ElementOfRouter.js.map

@@ -39,3 +39,4 @@ class HttpCore extends Core_1.default {
     }
 }
 exports.default = HttpCore;
+//# sourceMappingURL=HttpCore.js.map

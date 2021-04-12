@@ -8,3 +8,4 @@ class SslChainWrongPath extends Error {
     }
 }
 exports.default = SslChainWrongPath;
+//# sourceMappingURL=SslChainWrongPath.js.map

@@ -8,3 +8,4 @@ class HttpVersionRequried extends Error {
     }
 }
 exports.default = HttpVersionRequried;
+//# sourceMappingURL=HttpVersionRequired.js.map

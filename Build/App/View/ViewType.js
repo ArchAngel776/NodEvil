@@ -17,3 +17,4 @@ class ViewType {
     }
 }
 exports.default = ViewType;
+//# sourceMappingURL=ViewType.js.map

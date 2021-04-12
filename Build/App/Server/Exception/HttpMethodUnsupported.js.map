@@ -1,0 +1,1 @@
+{"version":3,"file":"HttpMethodUnsupported.js","sourceRoot":"","sources":["../../../../Src/App/Server/Exception/HttpMethodUnsupported.ts"],"names":[],"mappings":";;AAEA,MAAqB,qBAAsB,SAAQ,KAAK;IAEpD,YAAmB,MAAmB;QAElC,KAAK,EAAE,CAAC;QAER,IAAI,CAAC,IAAI,GAAG,mCAAmC,CAAC;QAEhD,IAAI,CAAC,OAAO,GAAG,eAAe,GAAG,MAAM,GAAG,kBAAkB,CAAC;IAEjE,CAAC;CAEJ;AAZD,wCAYC"}

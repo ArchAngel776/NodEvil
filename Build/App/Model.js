@@ -142,3 +142,4 @@ class Model {
     }
 }
 exports.default = Model;
+//# sourceMappingURL=Model.js.map

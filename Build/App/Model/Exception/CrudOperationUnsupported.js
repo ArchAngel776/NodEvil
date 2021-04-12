@@ -13,3 +13,4 @@ class CrudOperationUnsupported extends ErrorInstance_1.default {
     }
 }
 exports.default = CrudOperationUnsupported;
+//# sourceMappingURL=CrudOperationUnsupported.js.map

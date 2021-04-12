@@ -41,3 +41,4 @@ class Cookie {
     }
 }
 exports.default = Cookie;
+//# sourceMappingURL=Cookie.js.map

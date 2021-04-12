@@ -18,3 +18,4 @@ class Route extends ViewType_1.default {
     }
 }
 exports.default = Route;
+//# sourceMappingURL=Route.js.map

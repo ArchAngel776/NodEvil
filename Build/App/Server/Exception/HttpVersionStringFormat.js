@@ -8,3 +8,4 @@ class HttpVersionStringFormat extends Error {
     }
 }
 exports.default = HttpVersionStringFormat;
+//# sourceMappingURL=HttpVersionStringFormat.js.map

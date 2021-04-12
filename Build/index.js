@@ -19,3 +19,4 @@ exports.Auth = Auth_2.default;
 exports.Channel = Channel_2.default;
 exports.Client = Client_2.default;
 exports.Validator = Validator_2.default;
+//# sourceMappingURL=index.js.map

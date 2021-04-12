@@ -66,3 +66,4 @@ class MysqlDatabaseProvider extends DatabaseProvider_1.default {
     }
 }
 exports.default = MysqlDatabaseProvider;
+//# sourceMappingURL=MysqlDatabaseProvider.js.map

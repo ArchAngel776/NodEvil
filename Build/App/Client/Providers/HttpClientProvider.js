@@ -51,3 +51,4 @@ class HttpClientProvider extends ClientProvider_1.default {
     }
 }
 exports.default = HttpClientProvider;
+//# sourceMappingURL=HttpClientProvider.js.map

@@ -13,3 +13,4 @@ class ValidationType extends ErrorInstance_1.default {
     }
 }
 exports.default = ValidationType;
+//# sourceMappingURL=ValidationType.js.map

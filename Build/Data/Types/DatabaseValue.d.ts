@@ -1,2 +1,2 @@
-export declare type DatabaseValue = number | string | null;
+export declare type DatabaseValue = boolean | number | string | null;
 //# sourceMappingURL=DatabaseValue.d.ts.map

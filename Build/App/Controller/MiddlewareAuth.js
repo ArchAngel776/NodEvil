@@ -15,3 +15,4 @@ class MiddlewareAuth {
     }
 }
 exports.default = MiddlewareAuth;
+//# sourceMappingURL=MiddlewareAuth.js.map

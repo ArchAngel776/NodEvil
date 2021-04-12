@@ -39,3 +39,4 @@ class Data extends ViewType_1.default {
     }
 }
 exports.default = Data;
+//# sourceMappingURL=Data.js.map

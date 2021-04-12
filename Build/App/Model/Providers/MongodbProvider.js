@@ -19,3 +19,4 @@ class MongodbDatabaseProvider extends DatabaseProvider_1.default {
     }
 }
 exports.default = MongodbDatabaseProvider;
+//# sourceMappingURL=MongodbProvider.js.map

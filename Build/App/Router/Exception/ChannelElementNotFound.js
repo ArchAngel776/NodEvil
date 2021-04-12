@@ -8,3 +8,4 @@ class ChannelElementNotFound extends Error {
     }
 }
 exports.default = ChannelElementNotFound;
+//# sourceMappingURL=ChannelElementNotFound.js.map

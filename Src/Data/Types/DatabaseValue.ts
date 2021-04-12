@@ -1,1 +1,1 @@
-export type DatabaseValue = number | string | null;
+export type DatabaseValue = boolean | number | string | null;

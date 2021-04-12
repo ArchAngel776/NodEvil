@@ -8,3 +8,4 @@ class DeleteSqlBuilder extends SqlBuilder_1.default {
     }
 }
 exports.default = DeleteSqlBuilder;
+//# sourceMappingURL=DeleteSqlBuilder.js.map
