@@ -3,7 +3,6 @@ import { CRUD_OPERATION } from "../../Data/Statics/CrudOperation";
 import { STRING } from "../../Data/Statics/String";
 import DatabaseConfig from "../../Data/Structures/DatabaseConfig";
 import QueryBuilderSchema from "../../Data/Structures/QueryBuilderSchema";
-import TableData from "../../Data/Structures/TableData";
 import QueryBuilderOperationRequired from "./Exception/QueryBuilderOperationRequired";
 import QueryBuilderUndefined from "./Exception/QueryBuilderUndefined";
 
@@ -73,7 +72,7 @@ export default abstract class DatabaseProvider implements Validation {
 
     public abstract create() : Promise<number | never>;
 
-    public abstract read() : Promise<TableData[] | never>;
+    public abstract read<Schema>() : Promise<Array<Schema> | never>;
 
     public abstract update() : Promise<number | never>;
 

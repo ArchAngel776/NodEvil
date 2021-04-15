@@ -4,7 +4,6 @@ import * as PostgreSql from "pg";
 import InsertSqlBuilder from "../SqlBuilder/InsertSqlBuilder";
 import UpdateSqlBuilder from "../SqlBuilder/UpdateSqlBuilder";
 import DeleteSqlBuilder from "../SqlBuilder/DeleteSqlBuilder";
-import TableData from "../../../Data/Structures/TableData";
 import { SqlBuilderInstance } from "../../../Data/Types/SqlBuilderInstance";
 import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 
@@ -44,7 +43,7 @@ export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
     }
 
-    public async read() : Promise<TableData[] | never> {
+    public async read<Schema>() : Promise<Array<Schema> | never> {
 
         const result = await this.operation(SelectSqlBuilder);
         

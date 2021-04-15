@@ -1,12 +1,11 @@
 import DatabaseProvider from "../DatabaseProvider";
 import * as PostgreSql from "pg";
-import TableData from "../../../Data/Structures/TableData";
 import { SqlBuilderInstance } from "../../../Data/Types/SqlBuilderInstance";
 export default class PostgresqlDatabaseProvider extends DatabaseProvider {
     protected getConfig(): PostgreSql.ClientConfig;
     protected operation(SqlBuilder: SqlBuilderInstance): Promise<PostgreSql.QueryResult | never>;
     create(): Promise<number | never>;
-    read(): Promise<TableData[] | never>;
+    read<Schema>(): Promise<Array<Schema> | never>;
     update(): Promise<number | never>;
     delete(): Promise<number | never>;
 }

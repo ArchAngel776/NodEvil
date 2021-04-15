@@ -2,7 +2,6 @@ import QueryBuilderSchema from "../../../Data/Structures/QueryBuilderSchema";
 import DatabaseProvider from "../DatabaseProvider";
 import SelectSqlBuilder from "../SqlBuilder/SelectSqlBuilder";
 import * as MySql from "mysql";
-import TableData from "../../../Data/Structures/TableData";
 import { SqlBuilderInstance } from "../../../Data/Types/SqlBuilderInstance";
 import InsertSqlBuilder from "../SqlBuilder/InsertSqlBuilder";
 import UpdateSqlBuilder from "../SqlBuilder/UpdateSqlBuilder";
@@ -56,7 +55,7 @@ export default class MysqlDatabaseProvider extends DatabaseProvider {
 
     }
 
-    public async read() : Promise<TableData[] | never> {
+    public async read<Schema>() : Promise<Array<Schema> | never> {
 
         const result = await this.operation(SelectSqlBuilder);
 
