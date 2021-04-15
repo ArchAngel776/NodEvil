@@ -1,6 +1,6 @@
 import { CRUD_OPERATION } from "../Data/Statics/CrudOperation";
 import DatabaseConfig from "../Data/Structures/DatabaseConfig";
-import TableData from "../Data/Structures/TableData";
+import { TableData } from "../Data/Types/TableData";
 import { DatabaseConditionOperator } from "../Data/Types/DatabaseConditionOperator";
 import { DatabaseValue } from "../Data/Types/DatabaseValue";
 import ExceptionReader from "./Exception/ExceptionReader";
@@ -9,7 +9,7 @@ import DatabaseProviderUnsupported from "./Model/Exception/DatabaseProviderUnsup
 import PostgresqlDatabaseProvider from "./Model/Providers/PostgresqlDatabaseProvider";
 import QueryBuilder from "./Model/QueryBuilder";
 
-export default abstract class Model<Schema = {}> {
+export default abstract class Model {
 
     protected static config : DatabaseConfig;
 
@@ -27,7 +27,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public from(tableName : string) : Model<Schema> {
+    public from(tableName : string) : Model {
 
         this.queryBuilder.selectMain().changeTable(tableName);
 
@@ -35,7 +35,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public select(...fields : Array<string>) : Model<Schema> {
+    public select(...fields : Array<string>) : Model {
 
         this.queryBuilder.selectMain().setFields(fields);
 
@@ -43,7 +43,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public join(tableName : string, left : string, right : string, ...fields : Array<string>) : Model<Schema> {
+    public join(tableName : string, left : string, right : string, ...fields : Array<string>) : Model {
 
         this.queryBuilder.selectJoin().activeJoining();
 
@@ -57,7 +57,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public where(field : string, value : DatabaseValue, operator : DatabaseConditionOperator = "=") : Model<Schema> {
+    public where(field : string, value : DatabaseValue, operator : DatabaseConditionOperator = "=") : Model {
 
         this.queryBuilder.selectFilter().setCondition(field, value, operator);
 
@@ -65,7 +65,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public or(field : string, value : DatabaseValue, operator : DatabaseConditionOperator = "=") : Model<Schema> {
+    public or(field : string, value : DatabaseValue, operator : DatabaseConditionOperator = "=") : Model {
 
         this.queryBuilder.selectFilter().addOrCondition(field, value, operator);
 
@@ -73,7 +73,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public and(field : string, value : DatabaseValue, operator : DatabaseConditionOperator = "=") : Model<Schema> {
+    public and(field : string, value : DatabaseValue, operator : DatabaseConditionOperator = "=") : Model {
 
         this.queryBuilder.selectFilter().addAndCondition(field, value, operator);
 
@@ -109,7 +109,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public async get() : Promise<Array<Schema> | null> {
+    public async get() : Promise<Array<TableData> | null> {
 
         this.queryBuilder.changeOperation(CRUD_OPERATION.READ);
 
@@ -189,7 +189,7 @@ export default abstract class Model<Schema = {}> {
 
     }
 
-    public async first() : Promise<Schema | null> {
+    public async first() : Promise<TableData | null> {
 
         const result = await this.get();
 
