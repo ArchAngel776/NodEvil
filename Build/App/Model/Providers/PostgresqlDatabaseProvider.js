@@ -27,11 +27,19 @@ class PostgresqlDatabaseProvider extends DatabaseProvider_1.default {
     }
     operation(SqlBuilder) {
         return __awaiter(this, void 0, void 0, function* () {
-            const client = new PostgreSql.Client(this.getConfig());
-            yield client.connect();
-            const result = yield client.query(new SqlBuilder(this.queryBuilderSchema).build());
-            yield client.end();
-            return result;
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                const client = new PostgreSql.Client(this.getConfig());
+                yield client.connect();
+                client.query(new SqlBuilder(this.queryBuilderSchema).build())
+                    .then((result) => __awaiter(this, void 0, void 0, function* () {
+                    yield client.end();
+                    resolve(result);
+                }))
+                    .catch((error) => __awaiter(this, void 0, void 0, function* () {
+                    yield client.end();
+                    reject(error);
+                }));
+            }));
         });
     }
     create() {
