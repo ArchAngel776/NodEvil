@@ -23,15 +23,31 @@ export default class PostgresqlDatabaseProvider extends DatabaseProvider {
 
     protected async operation(SqlBuilder : SqlBuilderInstance) : Promise<PostgreSql.QueryResult | never> {
 
-        const client = new PostgreSql.Client(this.getConfig());
+        return new Promise(async (resolve, reject) => {
 
-        await client.connect();
+            const client = new PostgreSql.Client(this.getConfig());
 
-        const result = await client.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build());
+            await client.connect();
 
-        await client.end();
+            client.query(new SqlBuilder(<QueryBuilderSchema> this.queryBuilderSchema).build())
+            
+            .then(async result => {
 
-        return result;
+                await client.end();
+
+                resolve(result);
+
+            })
+            
+            .catch(async error => {
+
+                await client.end();
+
+                reject(error);
+
+            });
+
+        })
 
     }
 
