@@ -90,7 +90,7 @@ export default class Routing implements Init {
 
     protected findFile() : boolean {
 
-        if (this.request.getType() === HTTP_METHOD.Get && existsSync(this.request.getUrl()) && lstatSync(this.request.getUrl()).isFile()) {
+        if (this.request.getType() === HTTP_METHOD.Get && existsSync("." + this.request.getUrl()) && lstatSync("." + this.request.getUrl()).isFile()) {
 
             this.response.sendFile(readFileSync(this.request.getUrl()), new Mime(this.request.getUrl()).getMime());
 
