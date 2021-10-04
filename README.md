@@ -6,6 +6,10 @@ You can install NodEvil using npm command:
 
 ``npm install nodevil``
 
+Or via yarn:
+
+``yarn add nodevil``
+
 After that NodEvil should appear inside ``node_modules``. Now you can use that using:
 
 ```javascript
