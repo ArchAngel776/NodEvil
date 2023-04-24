@@ -88,9 +88,9 @@ server.withRouter(Router).init();
 
 ```javascript
 
-import { Router } from "nodevil";
-import LoginController from "./Controllers/LoginController";
-import HomeController from "./Controllers/HomeController";
+import { Router } from "nodevil"
+import LoginController from "./Controllers/LoginController"
+import HomeController from "./Controllers/HomeController"
 
 export default new Router()
 
@@ -116,43 +116,32 @@ export default new Router()
 
 ```javascript
 
-import { Controller, View } from "nodevil";
-import UserAuth from "../Auth/UserAuth";
+import { Controller, View } from "nodevil"
+import UserAuth from "../Auth/UserAuth"
 
-export default class LoginController extends Controller {
-
-    async index() {
-
-        const authorized = await new UserAuth(this.session).authorized();
-
+export default class LoginController extends Controller
+{
+    async index()
+    {
+        const authorized = await new UserAuth(this.session).authorized()
         return authorized ? 
-
             new View(this.session).route("/home").redirect()
-
-            new View(this.session).site("./Tests/Views/login.html").show();
-
+            new View(this.session).site("./Tests/Views/login.html").show()
     }
 
-    async login(params) {
-
-        const authorization = await new UserAuth(this.session).authorization(params.username, params.password);
-
+    async login(params)
+    {
+        const authorization = await new UserAuth(this.session).authorization(params.username, params.password)
         return authorization ?
-
             new View(this.session).route("/home").redirect() :
-
-            new View(this.session).site("./Views/loginWithException.html").show();
-
+            new View(this.session).site("./Views/loginWithException.html").show()
     }
 
-    async logout() {
-
-        await new UserAuth(this.session).reject();
-
-        return new View(this.session).route("/login").redirect();
-
+    async logout()
+    {
+        await new UserAuth(this.session).reject()
+        return new View(this.session).route("/login").redirect()
     }
-
 }
 
 ```
@@ -161,36 +150,29 @@ export default class LoginController extends Controller {
 
 ```javascript
 
-import { Model } from "nodevil";
+import { Model } from "nodevil"
 
-export default class User extends Model {
+export default class User extends Model
+{
+    table = "users"
 
-    table = "users";
-
-    async checkUserExist(username) {
-
-        const result = await this.from(this.table).where("username", username).first();
-
-        return result !== null;
-
+    async checkUserExist(username)
+    {
+        const result = await this.from(this.table).where("username", username).first()
+        return result !== null
     }
 
-    async login(username, password) {
-
-        const result = await this.from(this.table).where("username", username).and("password", password).first();
-
-        return result !== null;
-
+    async login(username, password)
+    {
+        const result = await this.from(this.table).where("username", username).and("password", password).first()
+        return result !== null
     }
 
-    async getField(username, field) {
-
-        const result = await this.select(field).from(this.table).where("username", username).first();
-
-        return result[field];
-
+    async getField(username, field)
+    {
+        const result = await this.select(field).from(this.table).where("username", username).first()
+        return result[field]
     }
-
 }
 
 ```
@@ -199,59 +181,46 @@ export default class User extends Model {
 
 ```javascript
 
-import { Auth } from "nodevil";
-import User from "../Models/User";
+import { Auth } from "nodevil"
+import User from "../Models/User"
 
-export default class UserAuth extends Auth {
+export default class UserAuth extends Auth
+{
+    authName = "user"
 
-    authName = "user";
-
-    async authorized() {
-
+    async authorized()
+    {
         if (!this.session.has("authType") || this.session.get("authType") !== this.authName) {
-
-            return false;
-
+            return false
         }
 
         if (!this.session.has("username")) {
-
             return false;
-
         }
 
-        const result = await new User().checkUserExist(this.session.get("username"));
-
-        return result;
-
+        const result = await new User().checkUserExist(this.session.get("username"))
+        return result
     }
 
-    async authorization(username, password) {
-
-        const result = await new User().login(username, password);
+    async authorization(username, password)
+    {
+        const result = await new User().login(username, password)
 
         if (!result) {
-
-            return false;
-
+            return false
         }
 
-        this.session.set("authType", this.authName);
-
-        this.session.set("username", username);
-
-        return true;
-
+        this.session.set("authType", this.authName)
+        this.session.set("username", username)
+        
+        return true
     }
 
-    async reject() {
-
-        this.session.delete("authType");
-
-        this.session.delete("username");
-
+    async reject()
+    {
+        this.session.delete("authType")
+        this.session.delete("username")
     }
-
 }
 
 ```
@@ -260,36 +229,30 @@ export default class UserAuth extends Auth {
 
 ```javascript
 
-import { Channel } from "nodevil";
+import { Channel } from "nodevil"
 
-export default class UserChannel extends Channel {
-
-    onOpen() {
-
-        console.log("Channel opened");
-
+export default class UserChannel extends Channel
+{
+    onOpen()
+    {
+        console.log("Channel opened")
     }
 
-    onMessage(message) {
-
-        console.log(message);
-
-        this.sendJSON("Foo");
-
+    onMessage(message)
+    {
+        console.log(message)
+        this.sendJSON("Foo")
     }
 
-    onClose(code) {
-
-        console.log(`Channel closed with code ${code}`);
-
+    onClose(code)
+    {
+        console.log(`Channel closed with code ${code}`)
     }
 
-    onError(error) {
-
-        console.log(error.message);
-
+    onError(error)
+    {
+        console.log(error.message)
     }
-
 }
 
 ```
