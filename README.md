@@ -126,7 +126,7 @@ export default class LoginController extends Controller
         const authorized = await new UserAuth(this.session).authorized()
         return authorized ? 
             new View(this.session).route("/home").redirect()
-            new View(this.session).site("./Tests/Views/login.html").show()
+            new View(this.session).site("./Tests/Views/login.html").show();
     }
 
     async login(params)
@@ -134,7 +134,7 @@ export default class LoginController extends Controller
         const authorization = await new UserAuth(this.session).authorization(params.username, params.password)
         return authorization ?
             new View(this.session).route("/home").redirect() :
-            new View(this.session).site("./Views/loginWithException.html").show()
+            new View(this.session).site("./Views/loginWithException.html").show();
     }
 
     async logout()
