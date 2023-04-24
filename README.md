@@ -14,7 +14,7 @@ After that NodEvil should appear inside ``node_modules``. Now you can use that u
 
 ```javascript
 
-import * as NodEvil from "nodevil";
+import * as NodEvil from "nodevil"
 
 ```
 # Architecture
@@ -59,8 +59,8 @@ I give some example of using NodEvil in practise:
 ### Server
 ```javascript
 
-import { Server } from "nodevil";
-import Router from "./router";
+import { Server } from "nodevil"
+import Router from "./router"
 
 const server = new Server({
     port: 443,
@@ -80,7 +80,7 @@ const server = new Server({
     }
 });
 
-server.withRouter(Router).init();
+server.withRouter(Router).init()
 
 ```
 
@@ -270,7 +270,7 @@ const response = await new Client("2.0")
     .body({
         foo: "bar"
     })
-    .post();
+    .post()
 
 ```
 
